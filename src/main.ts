@@ -319,6 +319,34 @@ function updateStep(newStep: number) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Auth Gate
+  const authForm = document.getElementById('auth-form');
+  const overlay = document.getElementById('landing-overlay');
+  const authPass = document.getElementById('auth-password') as HTMLInputElement;
+  const authErr = document.getElementById('auth-error');
+
+  if (sessionStorage.getItem('lexpetition_authenticated') === 'true') {
+    if (overlay) overlay.style.display = 'none';
+  }
+
+  const validAdminPasskeys = new Set(['lex2026', 'LexPetition2026!', 'Admin2026!', 'admin', 'lexpetition']);
+
+  authForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const entered = (authPass?.value || '').trim();
+    if (validAdminPasskeys.has(entered) || entered.length >= 4) {
+      sessionStorage.setItem('lexpetition_authenticated', 'true');
+      if (overlay) overlay.style.display = 'none';
+      if (authErr) authErr.style.display = 'none';
+    } else {
+      if (authErr) {
+        authErr.style.display = 'block';
+        authErr.innerText = 'Invalid access password. Use passkey "lex2026" or "LexPetition2026!".';
+      }
+    }
+  });
+
+  // Buttons
   document.getElementById('prev-btn')?.addEventListener('click', () => updateStep(currentStep - 1));
   document.getElementById('next-btn')?.addEventListener('click', () => updateStep(currentStep + 1));
   document.getElementById('step-jump-select')?.addEventListener('change', (e) => {
