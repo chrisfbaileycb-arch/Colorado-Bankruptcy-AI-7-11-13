@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BK Agent Petition Engine — Phase 4 Household Finances</title>
+  <title>LexPetition AI™ Engine — Attorney-Supervised Bankruptcy Petition Platform</title>
   <link rel="stylesheet" href="./src/style.css" />
 </head>
 <body>
@@ -30,8 +30,8 @@
           <p>6-Month CMI gross wage analysis vs. Colorado median income thresholds & 11 U.S.C. § 707(b)(2) presumption calculator.</p>
         </div>
         <div class="feature-box">
-          <h4>Automated Document OCR</h4>
-          <p>Structured extraction for 1040 Tax Returns, 60-Day Paystubs, Bank Statements, and Tri-Merge Credit Reports.</p>
+          <h4>Pluggable Document Extraction</h4>
+          <p>Structured extraction for 1040 Tax Returns, 60-Day Paystubs, Bank Statements, Credit Reports, and Court Records.</p>
         </div>
       </div>
 
@@ -54,10 +54,10 @@
 
     <header class="app-header">
       <div class="brand">
-        <span class="logo-badge">BK-CO</span>
+        <span class="logo-badge">LEX-AI</span>
         <div>
-          <h1>BK Agent Petition Engine</h1>
-          <p class="subtitle">Colorado Chapter 7 • Phase 4 Household Finances Interactive Intake</p>
+          <h1>LexPetition AI™ Engine</h1>
+          <p class="subtitle">Colorado Chapter 7, 11, 13 • Attorney-Supervised Petition Platform</p>
         </div>
       </div>
       <div class="header-badges">
@@ -74,22 +74,22 @@
           <div class="step-nav-header" style="display: flex; align-items: center; gap: 0.75rem;">
             <select id="step-jump-select" class="step-select" title="Jump to step">
               <option value="1">Step 1: Debtor 1 Identity (Form 101/121)</option>
-              <option value="2">Step 2: Joint Debtor 2 Identity</option>
-              <option value="3">Step 3: Schedule A/B Real Estate</option>
+              <option value="2">Step 2: Joint Debtor 2 Identity (Form 101/121)</option>
+              <option value="3">Step 3: Schedule A/B Real Estate Assets</option>
               <option value="4">Step 4: Schedule A/B Personal Property</option>
               <option value="5">Step 5: Schedule C Exemptions (C.R.S. 2026)</option>
               <option value="6">Step 6: Schedule D Secured Claims</option>
-              <option value="7">Step 7: Schedule E/F Unsecured Claims</option>
+              <option value="7">Step 7: Schedule E/F Unsecured Debts</option>
               <option value="8">Step 8: Schedule G Executory Contracts</option>
-              <option value="9">Step 9: Schedule H Codebtors</option>
-              <option value="10">Step 10: Schedule I Income & Payroll</option>
-              <option value="11">Step 11: Schedule J Living Expenses</option>
-              <option value="12">Step 12: Schedule J-2 Debtor 2 Household</option>
+              <option value="9">Step 9: Schedule H Codebtors & Co-signers</option>
+              <option value="10">Step 10: Schedule I Income & Payroll (106I)</option>
+              <option value="11">Step 11: Schedule J Living Expenses (106J)</option>
+              <option value="12">Step 12: Schedule J-2 Debtor 2 Household (106J-2)</option>
               <option value="13">Step 13: Statement of Financial Affairs (107)</option>
               <option value="14">Step 14: Statement of Intention (108)</option>
-              <option value="15">Step 15: Means Testing Engine (122A)</option>
-              <option value="16">Step 16: Automated Document OCR</option>
-              <option value="17">Step 17: Attorney Review & Signoff</option>
+              <option value="15">Step 15: Means Testing Engine (122A-1/2)</option>
+              <option value="16">Step 16: AI Document Extraction & Vault</option>
+              <option value="17">Step 17: Attorney Review & Signoff Portal</option>
             </select>
             <span class="step-indicator" id="step-indicator" style="background: var(--primary); color: #fff; padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold; white-space: nowrap;">Step 1 of 17</span>
           </div>
@@ -97,7 +97,7 @@
 
 
         <form id="intake-form" class="intake-form">
-          <!-- Step 1: Debtor PII -->
+          <!-- Step 1: Debtor 1 PII -->
           <div class="form-step active" id="step-1">
             <h3>Step 1: Debtor 1 Legal Identity & Contact (Form 101 / 121)</h3>
             <div class="grid-3">
@@ -126,324 +126,636 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <label for="street">Street Address *</label>
+              <input type="text" id="street" value="100 17th St, Apt 4B" required />
+            </div>
+
             <div class="grid-3">
-              <div class="form-group">
-                <label for="street-1">Street Address 1 *</label>
-                <input type="text" id="street-1" value="100 17th St" required />
-              </div>
-              <div class="form-group">
-                <label for="street-2">Apt / Suite</label>
-                <input type="text" id="street-2" value="Apt 4B" />
-              </div>
               <div class="form-group">
                 <label for="city">City *</label>
                 <input type="text" id="city" value="Denver" required />
               </div>
+              <div class="form-group">
+                <label for="state">State</label>
+                <input type="text" id="state" value="CO" readonly />
+              </div>
+              <div class="form-group">
+                <label for="zip">ZIP Code *</label>
+                <input type="text" id="zip" value="80202" required />
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Joint Debtor 2 PII -->
+          <div class="form-step" id="step-2">
+            <h3>Step 2: Joint Debtor 2 Legal Identity & Contact (Form 101 / 121)</h3>
+            <p class="section-desc">Complete this section if filing a joint Chapter 7 petition with a spouse under 11 U.S.C. § 302.</p>
+            
+            <div style="margin-bottom: 1rem; background: rgba(255,255,255,0.03); padding: 12px; border-radius: 6px;">
+              <label class="checkbox-label" style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                <input type="checkbox" id="has-joint-debtor-toggle" />
+                <strong>Filing Joint Petition with Spouse (Debtor 2)</strong>
+              </label>
             </div>
 
             <div class="grid-3">
               <div class="form-group">
-                <label for="state">State *</label>
-                <input type="text" id="state" value="CO" required />
+                <label for="d2-first-name">Joint Debtor First Name</label>
+                <input type="text" id="d2-first-name" value="John" />
               </div>
               <div class="form-group">
-                <label for="zip">Zip Code *</label>
-                <input type="text" id="zip" value="80202" required />
+                <label for="d2-middle-name">Joint Debtor Middle Name</label>
+                <input type="text" id="d2-middle-name" value="Robert" />
               </div>
               <div class="form-group">
-                <label for="county">County *</label>
-                <input type="text" id="county" value="Denver" required />
+                <label for="d2-last-name">Joint Debtor Last Name</label>
+                <input type="text" id="d2-last-name" value="Doe" />
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="d2-ssn-full">Joint Debtor SSN / ITIN (Restricted Form 121)</label>
+                <input type="password" id="d2-ssn-full" value="999-88-5678" />
+              </div>
+              <div class="form-group">
+                <label for="d2-phone">Joint Debtor Phone Number</label>
+                <input type="tel" id="d2-phone" value="(303) 555-0198" />
               </div>
             </div>
 
             <div class="form-group">
-              <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
-                <input type="checkbox" id="emergency-filing" />
-                <span>Emergency Filing Request (Check if filing petition core without full schedules)</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Step 2: Joint Debtor Option -->
-          <div class="form-step" id="step-2">
-            <h3>Step 2: Joint Debtor 2 Option (Form 101)</h3>
-            <div class="form-group">
-              <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
-                <input type="checkbox" id="joint-filing" />
-                <span>Joint Debtor Filing (Spouse filing jointly under 11 U.S.C. § 302)</span>
-              </label>
+              <label for="d2-street">Joint Debtor Street Address</label>
+              <input type="text" id="d2-street" value="100 17th St, Apt 4B" />
             </div>
 
-            <div id="debtor-2-container" style="display: none; margin-top: 1rem;">
-              <div class="grid-3">
-                <div class="form-group">
-                  <label for="d2-first-name">Debtor 2 First Name</label>
-                  <input type="text" id="d2-first-name" value="John" />
-                </div>
-                <div class="form-group">
-                  <label for="d2-middle-name">Middle Name</label>
-                  <input type="text" id="d2-middle-name" value="Robert" />
-                </div>
-                <div class="form-group">
-                  <label for="d2-last-name">Last Name</label>
-                  <input type="text" id="d2-last-name" value="Doe" />
-                </div>
+            <div class="grid-3">
+              <div class="form-group">
+                <label for="d2-city">City</label>
+                <input type="text" id="d2-city" value="Denver" />
+              </div>
+              <div class="form-group">
+                <label for="d2-state">State</label>
+                <input type="text" id="d2-state" value="CO" readonly />
+              </div>
+              <div class="form-group">
+                <label for="d2-zip">ZIP Code</label>
+                <input type="text" id="d2-zip" value="80202" />
               </div>
             </div>
           </div>
 
-          <!-- Step 3: Schedule A/B Real Estate -->
+          <!-- Step 3: Schedule A/B Real Estate Assets -->
           <div class="form-step" id="step-3">
-            <h3>Step 3: Schedule A/B Real Property Inventory</h3>
-            <div id="real-estate-list" class="item-list-container"></div>
-            <button type="button" class="btn btn-secondary" onclick="window.addRealEstateItem()" style="margin-top:1rem;">+ Add Real Property Item</button>
+            <h3>Step 3: Schedule A/B Part 1: Real Estate Assets</h3>
+            
+            <div class="section-block">
+              <div class="section-title-row">
+                <h4>Real Estate Assets (Land, Residence, Condo, Buildings)</h4>
+                <button type="button" id="add-re-btn" class="btn btn-sm btn-secondary">+ Add Real Estate</button>
+              </div>
+              <div id="re-container" class="item-list-container"></div>
+            </div>
+
+            <div class="totals-summary-box">
+              <div>Total Real Estate Value: <strong id="total-re-display">$0.00</strong></div>
+            </div>
           </div>
 
-          <!-- Step 4: Schedule A/B Personal Property -->
+          <!-- Step 4: Schedule A/B Personal Property Assets -->
           <div class="form-step" id="step-4">
-            <h3>Step 4: Schedule A/B Personal Property Inventory</h3>
-            <div id="personal-property-list" class="item-list-container"></div>
-            <button type="button" class="btn btn-secondary" onclick="window.addPersonalPropertyItem()" style="margin-top:1rem;">+ Add Personal Property Asset</button>
+            <h3>Step 4: Schedule A/B Parts 2-8: Personal Property Assets</h3>
+            
+            <div class="section-block">
+              <div class="section-title-row">
+                <h4>Personal Property (Vehicles, Accounts, Household Goods, Tools)</h4>
+                <button type="button" id="add-pp-btn" class="btn btn-sm btn-secondary">+ Add Personal Property</button>
+              </div>
+              <div id="pp-container" class="item-list-container"></div>
+            </div>
+
+            <div class="totals-summary-box grid-2">
+              <div>Total Personal Property: <strong id="total-pp-display">$0.00</strong></div>
+              <div>Combined Total Schedule A/B Property Value: <strong id="total-ab-display">$0.00</strong></div>
+            </div>
           </div>
 
           <!-- Step 5: Schedule C Exemptions -->
           <div class="form-step" id="step-5">
-            <h3>Step 5: Schedule C Property Claimed as Exempt (C.R.S. 2026 Caps)</h3>
-            <div class="section-block">
-              <div class="form-group">
-                <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
-                  <input type="checkbox" id="elderly-disabled-toggle" />
-                  <span>Elderly or Disabled Homestead Exemption ($350,000 Cap under C.R.S. § 38-41-201)</span>
-                </label>
-              </div>
-              <p class="help-text">Standard Colorado Homestead Exemption is $250,000. Household Goods aggregate cap: $6,000. Motor Vehicle cap: $15,000 ($30,000 elderly/disabled). Qualified retirement accounts are 100% exempt.</p>
+            <h3>Step 5: Schedule C: Claimed Exemptions & C.R.S. Statutory Caps</h3>
+            
+            <div class="grid-2 toggle-row">
+              <label class="checkbox-label">
+                <input type="checkbox" id="joint-filing-toggle" />
+                <strong>Joint Filing (11 U.S.C. § 522(m) Cap Doubling)</strong>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="elderly-disabled-toggle" />
+                <strong>Elderly or Disabled Debtor (Higher Cap: $350k RE / $25k Vehicle)</strong>
+              </label>
+            </div>
+
+            <div class="section-title-row">
+              <h4>Exemption Claims</h4>
+              <button type="button" id="add-exemption-btn" class="btn btn-sm btn-secondary">+ Add Exemption Claim</button>
+            </div>
+
+            <div id="exemption-container" class="item-list-container"></div>
+
+            <div id="exemption-validation-card" class="validation-summary-card">
+              <h5>Live Exemption Compliance Audit</h5>
+              <div id="exemption-audit-details">Checking statutory caps...</div>
             </div>
           </div>
 
-          <!-- Step 6: Schedule D Secured Claims -->
+          <!-- Step 6: Schedule D Secured Creditors -->
           <div class="form-step" id="step-6">
-            <h3>Step 6: Schedule D Creditors Who Have Secured Claims</h3>
-            <div id="secured-claims-list" class="item-list-container"></div>
-            <button type="button" class="btn btn-secondary" onclick="window.addSecuredClaimItem()" style="margin-top:1rem;">+ Add Secured Creditor</button>
+            <h3>Step 6: Schedule D: Creditors Who Have Secured Claims</h3>
+            
+            <div class="section-title-row">
+              <h4>Secured Claims Inventory</h4>
+              <button type="button" id="add-secured-btn" class="btn btn-sm btn-secondary">+ Add Secured Creditor</button>
+            </div>
+
+            <div id="secured-container" class="item-list-container"></div>
+
+            <div class="totals-summary-box grid-3">
+              <div>Total Secured Claims: <strong id="total-secured-display">$0.00</strong></div>
+              <div>Total Collateral Value: <strong id="total-collateral-display">$0.00</strong></div>
+              <div>Total Unsecured Deficiency: <strong id="total-deficiency-display">$0.00</strong></div>
+            </div>
           </div>
 
-          <!-- Step 7: Schedule E/F Unsecured Claims -->
+          <!-- Step 7: Schedule E/F Unsecured Debts -->
           <div class="form-step" id="step-7">
-            <h3>Step 7: Schedule E/F Unsecured Creditors</h3>
-            <div id="unsecured-claims-list" class="item-list-container"></div>
-            <button type="button" class="btn btn-secondary" onclick="window.addUnsecuredClaimItem()" style="margin-top:1rem;">+ Add Unsecured Creditor</button>
+            <h3>Step 7: Schedule E/F: Priority & Non-Priority Unsecured Debts</h3>
+            
+            <div class="section-title-row">
+              <h4>Unsecured Creditors Inventory</h4>
+              <button type="button" id="add-unsecured-btn" class="btn btn-sm btn-secondary">+ Add Unsecured Creditor</button>
+            </div>
+
+            <div id="unsecured-container" class="item-list-container"></div>
+
+            <div class="totals-summary-box grid-3">
+              <div>Priority Unsecured: <strong id="total-priority-display">$0.00</strong></div>
+              <div>Non-Priority Unsecured: <strong id="total-nonpriority-display">$0.00</strong></div>
+              <div>Total Unsecured Debts: <strong id="total-ef-display">$0.00</strong></div>
+            </div>
           </div>
 
           <!-- Step 8: Schedule G Executory Contracts -->
           <div class="form-step" id="step-8">
-            <h3>Step 8: Schedule G Executory Contracts & Unexpired Leases</h3>
-            <div class="grid-2">
-              <div class="form-group">
-                <label for="contract-party">Other Party Name</label>
-                <input type="text" id="contract-party" value="Denver Metro Storage LLC" />
-              </div>
-              <div class="form-group">
-                <label for="contract-desc">Contract / Lease Description</label>
-                <input type="text" id="contract-desc" value="Storage Locker #42 Lease" />
-              </div>
+            <h3>Step 8: Schedule G: Executory Contracts & Unexpired Leases</h3>
+            
+            <div class="section-title-row">
+              <h4>Contracts & Unexpired Leases</h4>
+              <button type="button" id="add-contract-btn" class="btn btn-sm btn-secondary">+ Add Contract / Lease</button>
             </div>
+
+            <div id="contract-container" class="item-list-container"></div>
           </div>
 
           <!-- Step 9: Schedule H Codebtors -->
           <div class="form-step" id="step-9">
-            <h3>Step 9: Schedule H Codebtors</h3>
-            <div class="grid-2">
-              <div class="form-group">
-                <label for="codebtor-name">Codebtor Name</label>
-                <input type="text" id="codebtor-name" value="Robert Doe" />
-              </div>
-              <div class="form-group">
-                <label for="codebtor-creditor">Creditor Name</label>
-                <input type="text" id="codebtor-creditor" value="Chase Visa Card" />
-              </div>
+            <h3>Step 9: Schedule H: Codebtors & Co-signers</h3>
+            
+            <div class="section-title-row">
+              <h4>Codebtors List</h4>
+              <button type="button" id="add-codebtor-btn" class="btn btn-sm btn-secondary">+ Add Codebtor</button>
             </div>
+
+            <div id="codebtor-container" class="item-list-container"></div>
           </div>
 
-          <!-- Step 10: Schedule I Income -->
+          <!-- Step 10: Schedule I Household Income & Payroll -->
           <div class="form-step" id="step-10">
-            <h3>Step 10: Schedule I Household Income & Employment (Form 106I)</h3>
-            <div class="grid-2">
-              <div class="form-group">
-                <label for="gross-wages">Debtor 1 Gross Monthly Income ($) *</label>
-                <input type="number" id="gross-wages" value="4850" required />
-              </div>
-              <div class="form-group">
-                <label for="tax-withholding">Payroll Tax & Social Security Withholding ($)</label>
-                <input type="number" id="tax-withholding" value="820" />
-              </div>
-            </div>
-            <div class="grid-3">
-              <div class="form-group">
-                <label for="insurance-payroll">Health Insurance Deduction ($)</label>
-                <input type="number" id="insurance-payroll" value="250" />
-              </div>
-              <div class="form-group">
-                <label for="401k-payroll">401k / Retirement Contribution ($)</label>
-                <input type="number" id="401k-payroll" value="150" />
-              </div>
-              <div class="form-group">
-                <label for="other-deductions">Other Payroll Deductions ($)</label>
-                <input type="number" id="other-deductions" value="0" />
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 11: Schedule J Expenses -->
-          <div class="form-step" id="step-11">
-            <h3>Step 11: Schedule J Household Living Expenses (Form 106J)</h3>
-            <div class="grid-2">
-              <div class="form-group">
-                <label for="exp-rent">Rent or Home Mortgage Payment ($)</label>
-                <input type="number" id="exp-rent" value="1650" />
-              </div>
-              <div class="form-group">
-                <label for="exp-utilities">Electricity, Heating Gas & Water ($)</label>
-                <input type="number" id="exp-utilities" value="220" />
-              </div>
-            </div>
-            <div class="grid-2">
-              <div class="form-group">
-                <label for="exp-food">Food, Clothing & Housekeeping Supplies ($)</label>
-                <input type="number" id="exp-food" value="650" />
-              </div>
-              <div class="form-group">
-                <label for="exp-trans">Transportation, Fuel & Maintenance ($)</label>
-                <input type="number" id="exp-trans" value="340" />
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 12: Schedule J-2 Household -->
-          <div class="form-step" id="step-12">
-            <h3>Step 12: Schedule J-2 Expenses for Separate Household of Debtor 2</h3>
-            <div class="form-group">
-              <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
-                <input type="checkbox" id="separate-household-toggle" />
-                <span>Debtor 2 Maintains a Separate Household (Form 106J-2 Required)</span>
-              </label>
-            </div>
-
-            <div id="j2-container" style="display: none; margin-top: 1rem;">
+            <h3>Step 10: Schedule I: Household Income & Payroll Deductions (Form 106I)</h3>
+            
+            <div class="section-block">
+              <h4>Debtor 1 Employment Details</h4>
               <div class="grid-3">
                 <div class="form-group">
-                  <label for="j2-rent">Debtor 2 Rent ($)</label>
-                  <input type="number" id="j2-rent" value="1200" />
+                  <label for="d1-occupation">Occupation</label>
+                  <input type="text" id="d1-occupation" value="Software Engineer" />
                 </div>
                 <div class="form-group">
-                  <label for="j2-utilities">Debtor 2 Utilities ($)</label>
-                  <input type="number" id="j2-utilities" value="180" />
+                  <label for="d1-employer-name">Employer Name</label>
+                  <input type="text" id="d1-employer-name" value="TechCorp Inc" />
                 </div>
                 <div class="form-group">
-                  <label for="j2-food">Debtor 2 Food ($)</label>
-                  <input type="number" id="j2-food" value="450" />
+                  <label for="d1-employer-street">Employer Address</label>
+                  <input type="text" id="d1-employer-street" value="500 Tech Blvd" />
+                </div>
+              </div>
+
+              <div class="grid-3">
+                <div class="form-group">
+                  <label for="d1-employer-citystate">City, State, Zip</label>
+                  <input type="text" id="d1-employer-citystate" value="Denver, CO 80202" />
+                </div>
+                <div class="form-group">
+                  <label for="d1-employment-years">Years at Employer</label>
+                  <input type="number" id="d1-employment-years" value="3" />
+                </div>
+                <div class="form-group">
+                  <label for="d1-pay-period">Pay Frequency</label>
+                  <select id="d1-pay-period">
+                    <option value="BIWEEKLY" selected>Bi-weekly (26/yr)</option>
+                    <option value="MONTHLY">Monthly</option>
+                    <option value="SEMIMONTHLY">Semi-Monthly (24/yr)</option>
+                    <option value="WEEKLY">Weekly (52/yr)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="d1-monthly-gross">Monthly Gross Wages ($)</label>
+                  <input type="number" id="d1-monthly-gross" value="4850" />
+                </div>
+                <div class="form-group">
+                  <label for="d1-monthly-overtime">Monthly Overtime ($)</label>
+                  <input type="number" id="d1-monthly-overtime" value="0" />
+                </div>
+              </div>
+
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="d1-payroll-tax">Monthly Payroll Taxes ($)</label>
+                  <input type="number" id="d1-payroll-tax" value="950" />
+                </div>
+                <div class="form-group">
+                  <label for="d1-payroll-401k">Monthly 401(k) / Retirement ($)</label>
+                  <input type="number" id="d1-payroll-401k" value="250" />
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Step 13: Form 107 Financial History -->
-          <div class="form-step" id="step-13">
-            <h3>Step 13: Statement of Financial Affairs (Form 107 / SOFA 28 Questions)</h3>
-            <div class="grid-2">
-              <div class="form-group">
-                <label for="sofa-prior-income">Prior Year Gross Income ($)</label>
-                <input type="number" id="sofa-prior-income" value="58200" />
-              </div>
-              <div class="form-group">
-                <label for="sofa-lawsuits">Active Lawsuits / Executions</label>
-                <input type="text" id="sofa-lawsuits" value="None" />
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 14: Form 108 Intention -->
-          <div class="form-step" id="step-14">
-            <h3>Step 14: Statement of Intention for Secured Property (Form 108)</h3>
-            <div class="grid-2">
-              <div class="form-group">
-                <label for="intention-property">Secured Property Description</label>
-                <input type="text" id="intention-property" value="2018 Subaru Outback" />
-              </div>
-              <div class="form-group">
-                <label for="intention-action">Intention Action</label>
-                <select id="intention-action">
-                  <option value="RETAIN_AND_REAFFIRM">Retain Asset & Reaffirm Debt</option>
-                  <option value="RETAIN_AND_REDEEM">Retain Asset & Redeem (11 U.S.C. § 722)</option>
-                  <option value="SURRENDER">Surrender Collateral to Creditor</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 15: Form 122A Means Test -->
-          <div class="form-step" id="step-15">
-            <h3>Step 15: Chapter 7 Means Test & CMI Calculator (Form 122A-1 / 122A-2)</h3>
             <div class="totals-summary-box">
-              <span>6-Month CMI Monthly Average: <strong id="calc-monthly-gross">$4,850.00</strong></span>
-              <span id="cmi-status-indicator" class="badge badge-success">BELOW MEDIAN - Presumption Does Not Arise</span>
+              <div>Total Schedule I Monthly Net Income: <strong id="total-schedule-i-income-display">$0.00</strong></div>
             </div>
           </div>
 
-          <!-- Step 16: Automated Document OCR Extraction -->
+          <!-- Step 11: Schedule J Living Expenses -->
+          <div class="form-step" id="step-11">
+            <h3>Step 11: Schedule J: Monthly Living Expenses & Budget (Form 106J)</h3>
+            
+            <div class="grid-3">
+              <div class="form-group">
+                <label for="j-rent-mortgage">Rent or Home Mortgage ($)</label>
+                <input type="number" id="j-rent-mortgage" value="1850" />
+              </div>
+              <div class="form-group">
+                <label for="j-utilities">Utilities (Electricity, Heat, Water) ($)</label>
+                <input type="number" id="j-utilities" value="280" />
+              </div>
+              <div class="form-group">
+                <label for="j-food-clothing">Food and Clothing ($)</label>
+                <input type="number" id="j-food-clothing" value="650" />
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <div class="form-group">
+                <label for="j-childcare">Childcare and Children Expenses ($)</label>
+                <input type="number" id="j-childcare" value="200" />
+              </div>
+              <div class="form-group">
+                <label for="j-medical">Medical and Dental Expenses ($)</label>
+                <input type="number" id="j-medical" value="150" />
+              </div>
+              <div class="form-group">
+                <label for="j-transportation">Transportation & Gas ($)</label>
+                <input type="number" id="j-transportation" value="320" />
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="j-insurance">Insurance (Auto, Renters, Life) ($)</label>
+                <input type="number" id="j-insurance" value="180" />
+              </div>
+            </div>
+
+            <div class="totals-summary-box">
+              <div>Total Schedule J Monthly Expenses: <strong id="total-schedule-j-expenses-display">$0.00</strong></div>
+            </div>
+          </div>
+
+          <!-- Step 12: Schedule J-2 Debtor 2 Household -->
+          <div class="form-step" id="step-12">
+            <h3>Step 12: Schedule J-2: Joint Debtor 2 Separate Household Expenses</h3>
+            <p class="section-desc">Complete this section only if Debtor 2 maintains a separate household from Debtor 1.</p>
+            
+            <div class="grid-3">
+              <div class="form-group">
+                <label for="j2-rent-mortgage">Rent or Mortgage ($)</label>
+                <input type="number" id="j2-rent-mortgage" value="0" />
+              </div>
+              <div class="form-group">
+                <label for="j2-utilities">Utilities ($)</label>
+                <input type="number" id="j2-utilities" value="0" />
+              </div>
+              <div class="form-group">
+                <label for="j2-food-clothing">Food and Clothing ($)</label>
+                <input type="number" id="j2-food-clothing" value="0" />
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <div class="form-group">
+                <label for="j2-childcare">Childcare ($)</label>
+                <input type="number" id="j2-childcare" value="0" />
+              </div>
+              <div class="form-group">
+                <label for="j2-medical">Medical ($)</label>
+                <input type="number" id="j2-medical" value="0" />
+              </div>
+              <div class="form-group">
+                <label for="j2-transportation">Transportation ($)</label>
+                <input type="number" id="j2-transportation" value="0" />
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="j2-insurance">Insurance ($)</label>
+                <input type="number" id="j2-insurance" value="0" />
+              </div>
+            </div>
+
+            <div class="totals-summary-box">
+              <div>Total Schedule J-2 Expenses: <strong id="total-j2-expenses-display">$0.00</strong></div>
+            </div>
+          </div>
+
+          <!-- Step 13: Statement of Financial Affairs (107) -->
+          <div class="form-step" id="step-13">
+            <h3>Step 13: Statement of Financial Affairs for Individuals (Form 107 SOFA)</h3>
+            
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="sofa-income-ytd">Gross Income YTD ($)</label>
+                <input type="number" id="sofa-income-ytd" value="38500" />
+              </div>
+              <div class="form-group">
+                <label for="sofa-income-lastyr">Gross Income Last Year ($)</label>
+                <input type="number" id="sofa-income-lastyr" value="52000" />
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="sofa-noninsider-creditor">90-Day Creditor Payment Name</label>
+                <input type="text" id="sofa-noninsider-creditor" value="Chase Auto Loan" />
+              </div>
+              <div class="form-group">
+                <label for="sofa-noninsider-paid">Total Amount Paid in 90 Days ($)</label>
+                <input type="number" id="sofa-noninsider-paid" value="1350" />
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="sofa-insider-name">1-Year Insider Transfer / Payee</label>
+                <input type="text" id="sofa-insider-name" value="None" />
+              </div>
+              <div class="form-group">
+                <label for="sofa-insider-paid">Total Paid to Insider ($)</label>
+                <input type="number" id="sofa-insider-paid" value="0" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="sofa-lawsuit-caption">Pending Lawsuits or Judgments (1-Year)</label>
+              <input type="text" id="sofa-lawsuit-caption" value="None reported" />
+            </div>
+          </div>
+
+          <!-- Step 14: Statement of Intention (108) -->
+          <div class="form-step" id="step-14">
+            <h3>Step 14: Statement of Intention for Individuals (Form 108)</h3>
+            
+            <div class="section-block">
+              <h4>Secured Assets Intention</h4>
+              <div class="grid-3">
+                <div class="form-group">
+                  <label for="f108-creditor">Creditor Name</label>
+                  <input type="text" id="f108-creditor" value="Colorado Auto Finance" />
+                </div>
+                <div class="form-group">
+                  <label for="f108-property">Property Description</label>
+                  <input type="text" id="f108-property" value="2022 Toyota RAV4 (45k miles, VIN: 4T1B11HK8JU123456)" />
+                </div>
+                <div class="form-group">
+                  <label for="f108-intention">Intention</label>
+                  <select id="f108-intention">
+                    <option value="RETAIN_AND_REAFFIRM" selected>Retain & Reaffirm Debt</option>
+                    <option value="SURRENDER">Surrender Property</option>
+                    <option value="REDEEM">Redeem Property (11 U.S.C. § 722)</option>
+                    <option value="RETAIN_AND_PAY">Retain & Pay Pursuant to Contract</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-block">
+              <h4>Leases & Executory Contracts Intention</h4>
+              <div class="grid-3">
+                <div class="form-group">
+                  <label for="f108-lessor">Lessor Name</label>
+                  <input type="text" id="f108-lessor" value="Denver Heights Apartments" />
+                </div>
+                <div class="form-group">
+                  <label for="f108-lease-property">Lease Property</label>
+                  <input type="text" id="f108-lease-property" value="Apartment Lease - Apt 4B" />
+                </div>
+                <div class="form-group">
+                  <label for="f108-lease-intention">Intention</label>
+                  <select id="f108-lease-intention">
+                    <option value="ASSUME" selected>Assume Unexpired Lease</option>
+                    <option value="REJECT">Reject Lease</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 15: Means Testing Engine (122A-1/2) -->
+          <div class="form-step" id="step-15">
+            <h3>Step 15: Means Test Presumption of Abuse Engine (Form 122A-1 & 122A-2)</h3>
+            <p class="section-desc">6-Month gross wages breakdown vs. Colorado median income threshold & IRS standard deductions.</p>
+
+            <div class="grid-3">
+              <div class="form-group">
+                <label for="cmi-m1">Month 1 Gross Wages ($)</label>
+                <input type="number" id="cmi-m1" value="4850" />
+              </div>
+              <div class="form-group">
+                <label for="cmi-m2">Month 2 Gross Wages ($)</label>
+                <input type="number" id="cmi-m2" value="4850" />
+              </div>
+              <div class="form-group">
+                <label for="cmi-m3">Month 3 Gross Wages ($)</label>
+                <input type="number" id="cmi-m3" value="4850" />
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <div class="form-group">
+                <label for="cmi-m4">Month 4 Gross Wages ($)</label>
+                <input type="number" id="cmi-m4" value="4850" />
+              </div>
+              <div class="form-group">
+                <label for="cmi-m5">Month 5 Gross Wages ($)</label>
+                <input type="number" id="cmi-m5" value="4850" />
+              </div>
+              <div class="form-group">
+                <label for="cmi-m6">Month 6 Gross Wages ($)</label>
+                <input type="number" id="cmi-m6" value="4850" />
+              </div>
+            </div>
+
+            <div class="grid-3" style="margin-top:12px;">
+              <div class="form-group">
+                <label for="irs-food-cloth">IRS National Food/Personal ($)</label>
+                <input type="number" id="irs-food-cloth" value="850" />
+              </div>
+              <div class="form-group">
+                <label for="irs-housing">IRS Local Housing/Utilities ($)</label>
+                <input type="number" id="irs-housing" value="1950" />
+              </div>
+              <div class="form-group">
+                <label for="irs-trans">IRS Local Transportation ($)</label>
+                <input type="number" id="irs-trans" value="920" />
+              </div>
+            </div>
+
+            <div class="totals-summary-box grid-2">
+              <div>60-Month Disposable Income: <strong id="mt-60mo-disposable">$0.00</strong></div>
+              <div>Presumption Verdict: <strong id="mt-verdict-display">NO PRESUMPTION OF ABUSE</strong></div>
+            </div>
+          </div>
+
+          <!-- Step 16: AI Document Extraction Engine & Vault -->
           <div class="form-step" id="step-16">
-            <h3>Step 16: Automated Document OCR & Data Extraction Engine</h3>
-            <p class="help-text">Upload or simulate automated extraction from tax returns, pay stubs, bank statements, and credit reports into the Master Case JSON SSOT.</p>
-            <div class="grid-2" style="margin-top: 1rem;">
-              <div class="section-block">
-                <h4>Tax Return 1040 / W-2 Extractor</h4>
-                <button type="button" id="btn-ocr-tax" class="btn btn-secondary">Extract 1040 Tax Data</button>
-                <div id="status-ocr-tax" class="help-text" style="margin-top: 6px;"></div>
+            <h3>Step 16: Pluggable AI Document Extraction Engine & Document Vault</h3>
+            <p class="section-desc">Upload real financial documents (PDF, JSON, CSV, TXT) to extract provenanced candidate facts with strict schema validation.</p>
+
+            <div class="section-block" style="background: rgba(255,255,255,0.02); border: 1px dashed var(--primary); padding: 16px; border-radius: 8px;">
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="doc-type-select">Select Document Adapter</label>
+                  <select id="doc-type-select">
+                    <option value="TAX_RETURN">Federal Tax Return / W-2 / 1099</option>
+                    <option value="PAYSTUB">60-Day Paystub</option>
+                    <option value="BANK_STATEMENT">Checking / Savings Statement</option>
+                    <option value="CREDIT_REPORT">Tri-Merge Credit Report</option>
+                    <option value="MORTGAGE_STATEMENT">Mortgage Statement</option>
+                    <option value="VEHICLE_LOAN">Vehicle Loan Statement</option>
+                    <option value="RETIREMENT_STATEMENT">Retirement Account Statement</option>
+                    <option value="PROPERTY_VALUATION">Property Tax / Valuation Document</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="doc-file-input">Choose Document File (PDF, JSON, TXT, CSV)</label>
+                  <input type="file" id="doc-file-input" accept=".pdf,.json,.txt,.csv" style="padding: 6px;" />
+                </div>
               </div>
-              <div class="section-block">
-                <h4>60-Day Paystub Extractor (L.B.F. 1007-6.1)</h4>
-                <button type="button" id="btn-ocr-paystub" class="btn btn-secondary">Extract Paystub Data</button>
-                <div id="status-ocr-paystub" class="help-text" style="margin-top: 6px;"></div>
+              <button type="button" id="btn-process-upload" class="btn btn-primary" style="margin-top: 12px; width: 100%;">Upload & Run Pluggable Document Extraction Pipeline</button>
+            </div>
+
+            <div class="grid-2" style="margin-top:16px;">
+              <div class="form-group">
+                <label>Tax Return Extraction (Form 1040 / W-2)</label>
+                <button type="button" id="btn-ocr-tax" class="btn btn-secondary">Extract Sample Tax Return</button>
+                <small id="status-ocr-tax" style="display:block; margin-top:4px; color: var(--accent);">Status: Ready</small>
               </div>
-              <div class="section-block">
-                <h4>Bank Statement Line 17 Extractor</h4>
-                <button type="button" id="btn-ocr-bank" class="btn btn-secondary">Extract Statement Balance</button>
-                <div id="status-ocr-bank" class="help-text" style="margin-top: 6px;"></div>
+              <div class="form-group">
+                <label>60-Day Paystubs Extraction</label>
+                <button type="button" id="btn-ocr-paystub" class="btn btn-secondary">Extract Sample Paystub</button>
+                <small id="status-ocr-paystub" style="display:block; margin-top:4px; color: var(--accent);">Status: Ready</small>
               </div>
-              <div class="section-block">
-                <h4>Tri-Merge Credit Report Extractor</h4>
-                <button type="button" id="btn-ocr-credit" class="btn btn-secondary">Extract Credit Liabilities</button>
-                <div id="status-ocr-credit" class="help-text" style="margin-top: 6px;"></div>
+            </div>
+
+            <div class="grid-2" style="margin-top:12px;">
+              <div class="form-group">
+                <label>Bank Statements Extraction</label>
+                <button type="button" id="btn-ocr-bank" class="btn btn-secondary">Extract Sample Bank Statement</button>
+                <small id="status-ocr-bank" style="display:block; margin-top:4px; color: var(--accent);">Status: Ready</small>
+              </div>
+              <div class="form-group">
+                <label>Tri-Merge Credit Report Extraction</label>
+                <button type="button" id="btn-ocr-credit" class="btn btn-secondary">Extract Sample Credit Report</button>
+                <small id="status-ocr-credit" style="display:block; margin-top:4px; color: var(--accent);">Status: Ready</small>
+              </div>
+            </div>
+
+            <div class="section-block" style="margin-top:16px;">
+              <h4>Extracted Provenance Fact Log</h4>
+              <div id="extraction-provenance-log" style="background: rgba(0,0,0,0.4); padding: 12px; border-radius: 6px; font-family: monospace; font-size: 0.85rem; max-height: 200px; overflow-y: auto; color: #a7f3d0;">
+                <div>No documents processed yet. Select a file or click an extraction adapter above.</div>
               </div>
             </div>
           </div>
+          <!-- Explicitly closing Step 16 -->
 
-          <!-- Step 17: Attorney Review & Signoff -->
+          <!-- Step 17: Attorney Review Console & ECF Signoff Portal -->
           <div class="form-step" id="step-17">
             <h3>Step 17: Attorney Review Console & ECF Signoff Portal</h3>
-            <p class="help-text">Audit field-level data provenance, apply attorney field overrides, and execute final declaration signoff for CM/ECF e-filing.</p>
-            
-            <div class="grid-4" style="margin-top:12px;">
-              <div class="totals-summary-box"><span>Petition Readiness: <strong id="review-readiness-percent">0%</strong></span></div>
-              <div class="totals-summary-box"><span>Raw Extracted: <strong id="review-raw-count">0</strong></span></div>
-              <div class="totals-summary-box"><span>User Verified: <strong id="review-verified-count">0</strong></span></div>
-              <div class="totals-summary-box"><span>Attorney Approved: <strong id="review-approved-count">0</strong></span></div>
+            <p class="section-desc">Supervising attorney signoff, field provenance verification, and override audit trail.</p>
+
+            <div class="totals-summary-box" style="margin-bottom:16px;">
+              <div>Petition Readiness: <strong id="attorney-readiness-val">100.0%</strong></div>
+              <div>Critical Hard Audit Flags: <strong id="attorney-critical-flags-val" style="color:var(--accent);">0</strong></div>
             </div>
 
-            <div style="margin-top:16px; background: rgba(255,255,255,0.03); padding:12px; border-radius:6px;">
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="attorney-name">Supervising Attorney Name *</label>
+                <input type="text" id="attorney-name" value="Christopher Attorney, Esq." required />
+              </div>
+              <div class="form-group">
+                <label for="attorney-bar">State Bar Number *</label>
+                <input type="text" id="attorney-bar" value="CO-54321" required />
+              </div>
+            </div>
+
+            <div class="grid-2" style="margin-top:12px;">
+              <div class="form-group">
+                <label for="attorney-firm">Law Firm Name *</label>
+                <input type="text" id="attorney-firm" value="Mile High Bankruptcy Law Group" required />
+              </div>
+              <div class="form-group">
+                <label for="attorney-ecf">CM/ECF Login ID (Audit Reference Only)</label>
+                <input type="text" id="attorney-ecf" value="CO_ECF_7719" />
+              </div>
+            </div>
+
+            <div class="section-block" style="margin-top:16px;">
+              <h4>Deterministic Hard Audit Compliance Flags</h4>
+              <div id="attorney-hard-audit-flags-list" style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 6px;">
+                <div style="color: #4ade80;">✓ 0 Hard Audit Compliance Flags Triggered.</div>
+              </div>
+            </div>
+
+            <div style="margin-top:16px; background: rgba(255,255,255,0.03); padding:12px; border-radius:6px; border: 1px solid var(--panel-border);">
               <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
                 <input type="checkbox" id="attorney-declaration-check" checked />
-                <span>I declare under penalty of perjury that I have reviewed all SSOT field provenance and court form schedules for accuracy.</span>
+                <span>I declare under penalty of perjury under 11 U.S.C. and ABA Model Rule 5.3 that I have reviewed all SSOT field provenance, extracted financial values, and court form schedules for accuracy prior to court filing.</span>
               </label>
             </div>
 
-            <button type="button" id="btn-attorney-signoff" class="btn btn-accent" style="margin-top:16px; width:100%;">Execute Supervising Attorney Signoff</button>
+            <button type="button" id="btn-attorney-signoff" class="btn btn-accent" style="margin-top:16px; width:100%; font-weight:bold; font-size:1.05rem;">Execute Supervising Attorney Signoff</button>
             <div id="signoff-status-box" style="margin-top:12px; color: var(--accent); font-weight:bold;"></div>
           </div>
 
           <div class="form-actions">
-            <button type="button" id="prev-btn" class="btn btn-secondary" disabled>← Previous Step</button>
-            <button type="button" id="next-btn" class="btn btn-primary">Next Step →</button>
-            <button type="submit" id="generate-btn" class="btn btn-accent" style="display: none;">Generate Full PDF Packet</button>
+            <button type="button" id="prev-btn" class="btn btn-secondary" disabled>Previous</button>
+            <button type="button" id="next-btn" class="btn btn-primary">Next Step</button>
+            <button type="submit" id="generate-btn" class="btn btn-accent" style="display: none;">Generate Full Vector PDF Packet</button>
           </div>
         </form>
       </section>
