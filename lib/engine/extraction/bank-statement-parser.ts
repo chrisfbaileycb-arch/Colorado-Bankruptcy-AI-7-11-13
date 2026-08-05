@@ -1,6 +1,6 @@
 import type { DocumentType, ExtractionResult } from './types';
 
-export function parseBankStatement(rawObj: any, filename: string = 'bank_statement.json'): ExtractionResult {
+export function parseBankStatement(rawObj: any, filename: string = 'bank_statement.json'): ExtractionResult<import('./types').ExtractedBankStatement> {
   const balance = Number(rawObj.ending_balance || rawObj.balance || 1250);
 
   return {
