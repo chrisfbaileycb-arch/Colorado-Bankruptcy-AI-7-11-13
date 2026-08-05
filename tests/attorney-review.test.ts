@@ -33,15 +33,15 @@ describe('Phase 8: Attorney Review Console Test Suite', () => {
       original_value: 'Jane',
       overridden_value: 'Janet',
       attorney_reason: 'Corrected legal first name per passport',
-      attorney_name: 'Christopher Attorney, Esq.',
-      bar_number: 'CO-54321',
+      attorney_name: 'Example Supervising Attorney',
+      bar_number: 'TEST-BAR-54321',
       timestamp: '2026-08-02T16:30:00Z'
     };
 
     const res = applyFieldOverride(data, override);
     expect(res.success).toBe(true);
 
-    const firstWrapper = res.updated_data.debtor_1.pii.first_name;
+    const firstWrapper = res.updated_data.debtor_1.first_name;
     expect(firstWrapper?.value).toBe('Janet');
     expect(firstWrapper?.status).toBe('attorney_approved');
     expect(firstWrapper?.attorney_notes).toBe('Corrected legal first name per passport');
@@ -50,10 +50,10 @@ describe('Phase 8: Attorney Review Console Test Suite', () => {
   it('4. executeAttorneySignoff rejects signoff if declaration is not accepted', () => {
     const data = createSampleMasterCaseData();
     const signoff: AttorneySignoff = {
-      attorney_name: 'Christopher Attorney, Esq.',
-      bar_number: 'CO-54321',
+      attorney_name: 'Example Supervising Attorney',
+      bar_number: 'TEST-BAR-54321',
       firm_name: 'Mile High BK Law',
-      ecf_login_id: 'ECF_99',
+      ecf_login_id: 'TEST_ECF_NOT_REAL',
       signed_at: new Date().toISOString(),
       declaration_accepted: false
     };
@@ -66,10 +66,10 @@ describe('Phase 8: Attorney Review Console Test Suite', () => {
   it('5. executeAttorneySignoff rejects signoff if bar number is invalid', () => {
     const data = createSampleMasterCaseData();
     const signoff: AttorneySignoff = {
-      attorney_name: 'Christopher Attorney, Esq.',
+      attorney_name: 'Example Supervising Attorney',
       bar_number: '12',
       firm_name: 'Mile High BK Law',
-      ecf_login_id: 'ECF_99',
+      ecf_login_id: 'TEST_ECF_NOT_REAL',
       signed_at: new Date().toISOString(),
       declaration_accepted: true
     };
@@ -82,10 +82,10 @@ describe('Phase 8: Attorney Review Console Test Suite', () => {
   it('6. executeAttorneySignoff completes successfully when all prerequisites pass', () => {
     const data = createSampleMasterCaseData();
     const signoff: AttorneySignoff = {
-      attorney_name: 'Christopher Attorney, Esq.',
-      bar_number: 'CO-54321',
+      attorney_name: 'Example Supervising Attorney',
+      bar_number: 'TEST-BAR-54321',
       firm_name: 'Mile High Bankruptcy Law Group',
-      ecf_login_id: 'CO_ECF_7719',
+      ecf_login_id: 'TEST_ECF_NOT_REAL',
       signed_at: new Date().toISOString(),
       declaration_accepted: true
     };
@@ -93,7 +93,7 @@ describe('Phase 8: Attorney Review Console Test Suite', () => {
     const res = executeAttorneySignoff(data, signoff);
     expect(res.success).toBe(true);
     expect(res.errors.length).toBe(0);
-    expect(res.summary.signoff_details?.attorney_name).toBe('Christopher Attorney, Esq.');
+    expect(res.summary.signoff_details?.attorney_name).toBe('Example Supervising Attorney');
 
     const wrappers = extractAllFieldWrappers(data);
     expect(wrappers.every(w => w.status === 'attorney_approved')).toBe(true);

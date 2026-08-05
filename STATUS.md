@@ -1,5 +1,7 @@
 # Master Build Plan Status (`STATUS.md`)
 
+> **Historical internal record:** This document records implementation claims from an earlier development pass. It is not an independent legal, security, form-currency, or production-readiness certification. Current release gates are defined in [docs/release-checklist.md](docs/release-checklist.md).
+
 | Phase | Description | Status |
 |---|---|:---:|
 | **Phase 1** | Foundation Setup, Data Model SSOT, Forms Manifest | **COMPLETE** |

@@ -11,9 +11,9 @@
   <div id="landing-overlay" class="landing-overlay">
     <div class="landing-card">
       <div class="hero-header">
-        <span class="b2b-badge">LAW FIRM ENTERPRISE PLATFORM</span>
+        <span class="b2b-badge">ATTORNEY-SUPERVISED DEMONSTRATION</span>
         <h1>LexPetition AI™ Engine</h1>
-        <p>Unified Federal Bankruptcy Petition Automation & Vector PDF Compiler for Attorney-Supervised Filing.</p>
+        <p>Colorado Chapter 7 petition-preparation prototype with deterministic validation and draft PDF generation. Not a filing service or legal advice.</p>
       </div>
 
       <div class="features-grid">
@@ -36,15 +36,15 @@
       </div>
 
       <div class="auth-gate-box">
-        <h3>Authorized Law Firm Access</h3>
-        <p>Enter your firm passkey or authorized Gmail credentials to access the live petition engine console.</p>
+        <h3>Demo Safety Acknowledgment</h3>
+        <p>Use synthetic information only. This demonstration does not provide authentication or secure client-data storage.</p>
         
         <form id="auth-form">
           <div class="auth-input-group">
-            <input type="password" id="auth-password" placeholder="Enter Access Password" style="width:100%; padding:0.75rem; border-radius:8px; border:1px solid var(--panel-border); background:rgba(0,0,0,0.5); color:#fff; font-size:1rem;" required />
-            <button type="submit" class="btn btn-primary" style="width:100%; padding:0.75rem; font-size:1rem;">Access LexPetition Engine</button>
+            <label class="checkbox-label"><input type="checkbox" id="demo-acknowledgment" required /> I understand this is a demonstration and I will use synthetic data only.</label>
+            <button type="submit" class="btn btn-primary" style="width:100%; padding:0.75rem; font-size:1rem;">Enter Demonstration</button>
           </div>
-          <div id="auth-error" class="auth-error">Invalid access password. Please try again.</div>
+          <div id="auth-error" class="auth-error">Please acknowledge the demonstration terms.</div>
         </form>
       </div>
     </div>
@@ -57,7 +57,7 @@
         <span class="logo-badge">LEX-AI</span>
         <div>
           <h1>LexPetition AI™ Engine</h1>
-          <p class="subtitle">Colorado Chapter 7, 11, 13 • Attorney-Supervised Petition Platform</p>
+          <p class="subtitle">Colorado Chapter 7 • Chapter 11 and 13 Architecture Planned</p>
         </div>
       </div>
       <div class="header-badges">
@@ -118,17 +118,17 @@
             <div class="grid-2">
               <div class="form-group">
                 <label for="ssn-full">Full SSN / ITIN (Restricted Form 121) *</label>
-                <input type="password" id="ssn-full" value="999-88-1234" required />
+                <input type="password" id="ssn-full" placeholder="Synthetic SSN only" required />
               </div>
               <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" value="(303) 555-0199" />
+                <input type="tel" id="phone" value="" />
               </div>
             </div>
 
             <div class="form-group">
               <label for="street">Street Address *</label>
-              <input type="text" id="street" value="100 17th St, Apt 4B" required />
+              <input type="text" id="street" value="100 Example Street" required />
             </div>
 
             <div class="grid-3">
@@ -177,17 +177,17 @@
             <div class="grid-2">
               <div class="form-group">
                 <label for="d2-ssn-full">Joint Debtor SSN / ITIN (Restricted Form 121)</label>
-                <input type="password" id="d2-ssn-full" value="999-88-5678" />
+                <input type="password" id="d2-ssn-full" placeholder="Synthetic SSN only" />
               </div>
               <div class="form-group">
                 <label for="d2-phone">Joint Debtor Phone Number</label>
-                <input type="tel" id="d2-phone" value="(303) 555-0198" />
+                <input type="tel" id="d2-phone" value="" />
               </div>
             </div>
 
             <div class="form-group">
               <label for="d2-street">Joint Debtor Street Address</label>
-              <input type="text" id="d2-street" value="100 17th St, Apt 4B" />
+              <input type="text" id="d2-street" value="100 Example Street" />
             </div>
 
             <div class="grid-3">
@@ -543,11 +543,11 @@
               <div class="grid-3">
                 <div class="form-group">
                   <label for="f108-creditor">Creditor Name</label>
-                  <input type="text" id="f108-creditor" value="Colorado Auto Finance" />
+                  <input type="text" id="f108-creditor" value="Example Vehicle Creditor" />
                 </div>
                 <div class="form-group">
                   <label for="f108-property">Property Description</label>
-                  <input type="text" id="f108-property" value="2022 Toyota RAV4 (45k miles, VIN: 4T1B11HK8JU123456)" />
+                  <input type="text" id="f108-property" value="2022 Toyota RAV4 (45k miles, VIN: EXAMPLE-VIN-NOT-VALID)" />
                 </div>
                 <div class="form-group">
                   <label for="f108-intention">Intention</label>
@@ -566,7 +566,7 @@
               <div class="grid-3">
                 <div class="form-group">
                   <label for="f108-lessor">Lessor Name</label>
-                  <input type="text" id="f108-lessor" value="Denver Heights Apartments" />
+                  <input type="text" id="f108-lessor" value="Example Residential Lessor" />
                 </div>
                 <div class="form-group">
                   <label for="f108-lease-property">Lease Property</label>
@@ -715,11 +715,11 @@
             <div class="grid-2">
               <div class="form-group">
                 <label for="attorney-name">Supervising Attorney Name *</label>
-                <input type="text" id="attorney-name" value="Christopher Attorney, Esq." required />
+                <input type="text" id="attorney-name" value="Example Supervising Attorney" required />
               </div>
               <div class="form-group">
                 <label for="attorney-bar">State Bar Number *</label>
-                <input type="text" id="attorney-bar" value="CO-54321" required />
+                <input type="text" id="attorney-bar" value="TEST-BAR-54321" required />
               </div>
             </div>
 
@@ -730,7 +730,7 @@
               </div>
               <div class="form-group">
                 <label for="attorney-ecf">CM/ECF Login ID (Audit Reference Only)</label>
-                <input type="text" id="attorney-ecf" value="CO_ECF_7719" />
+                <input type="text" id="attorney-ecf" value="TEST_ECF_NOT_REAL" />
               </div>
             </div>
 

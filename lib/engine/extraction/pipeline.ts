@@ -1,4 +1,5 @@
-import type { DocumentType, ExtractedFact, ExtractionResult } from './types';
+import type { ExtractedFact, ExtractionResult } from './types';
+import type { DocumentType } from '../../types/master-case';
 import { parseTaxReturn } from './tax-return-parser';
 import { parsePaystub } from './paystub-parser';
 import { parseBankStatement } from './bank-statement-parser';

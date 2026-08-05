@@ -1,7 +1,7 @@
 {
   "name": "bk-agent-petition-engine",
   "version": "1.0.0",
-  "description": "Enterprise Chapter 7 Bankruptcy Petition Extraction & Deterministic Validation Engine",
+  "description": "Attorney-supervised Colorado Chapter 7 petition preparation and deterministic validation prototype",
   "main": "lib/index.ts",
   "type": "module",
   "scripts": {
