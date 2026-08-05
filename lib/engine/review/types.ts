@@ -10,6 +10,17 @@ export interface FieldOverride {
   timestamp: string;
 }
 
+export type AttorneyReviewMode = 'FIELD_BY_FIELD' | 'PARTITIONED';
+
+export interface ReviewPartitionApproval {
+  step_start: number;
+  step_end: number;
+  attorney_name: string;
+  bar_number: string;
+  approved_at: string;
+  note: string;
+}
+
 export interface AttorneySignoff {
   attorney_name: string;
   bar_number: string;
@@ -17,6 +28,16 @@ export interface AttorneySignoff {
   ecf_login_id: string;
   signed_at: string;
   declaration_accepted: boolean;
+  review_mode?: AttorneyReviewMode;
+  partition_approvals?: ReviewPartitionApproval[];
+}
+
+export interface SelfReviewConfirmation {
+  reviewer_name: string;
+  completed_at: string;
+  declaration_accepted: boolean;
+  step_start: number;
+  step_end: number;
 }
 
 export interface PetitionReviewSummary {
