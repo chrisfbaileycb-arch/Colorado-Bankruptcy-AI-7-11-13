@@ -35,7 +35,7 @@ export function calculateReviewSummary(data: MasterCaseData, signoff?: AttorneyS
     readiness_percentage: ready,
     active_overrides_count: fields.filter(field => Boolean(field.attorney_notes)).length,
     hard_audit_critical_flags_count: critical,
-    can_execute_signoff: critical === 0 && flagged === 0,
+    can_execute_signoff: fields.length > 0 && critical === 0 && flagged === 0 && approved === fields.length,
     signoff_details: signoff
   };
 }
@@ -54,11 +54,13 @@ export function executeAttorneySignoff(data: MasterCaseData, signoff: AttorneySi
   const errors: string[] = [];
   if (!signoff.attorney_name.trim()) errors.push('Supervising Attorney Name is required.');
   if (signoff.bar_number.trim().length < 4) errors.push('A valid Attorney Bar Number is required.');
-  if (!signoff.declaration_accepted) errors.push('The declaration under penalty of perjury must be accepted.');
+  if (!signoff.firm_name.trim()) errors.push('Law Firm Name is required.');
+  if (!signoff.declaration_accepted) errors.push('The review confirmation must be accepted.');
   const summary = calculateReviewSummary(data, signoff);
   if (summary.hard_audit_critical_flags_count > 0) errors.push('Critical audit flags must be resolved.');
-  if (errors.length === 0) {
-    for (const field of extractAllFieldWrappers(data)) field.status = 'attorney_approved';
+  if (summary.flagged_count > 0) errors.push('Flagged fields must be resolved.');
+  if (summary.attorney_approved_count !== summary.total_fields) {
+    errors.push('Every material field must be attorney-approved before signoff.');
   }
   return { success: errors.length === 0, errors, summary: calculateReviewSummary(data, signoff) };
 }
