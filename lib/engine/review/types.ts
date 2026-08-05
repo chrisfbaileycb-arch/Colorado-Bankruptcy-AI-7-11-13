@@ -1,4 +1,4 @@
-import type { MasterCaseData, VerificationStatus } from '../../types/master-case';
+import type { MasterCaseData } from '../../types/master-case';
 
 export interface FieldOverride {
   field_id: string;
