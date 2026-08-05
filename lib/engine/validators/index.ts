@@ -56,7 +56,7 @@ export function validateExemptionCapsAndSummaries(data: MasterCaseData) {
     const citation = claim.statute_citation.value;
     const amount = Number(claim.claimed_amount.value || 0);
     const rule = Object.values(rules).find(r => r.statute_citation === citation);
-    if (rule && rule.individual_cap !== 'UNLIMITED' && amount > rule.individual_cap) {
+    if (rule && rule.individual_cap !== 'UNLIMITED' && amount > Number(rule.individual_cap)) {
       issues.push(`${claim.id} exceeds the configured individual cap.`);
     }
   }
