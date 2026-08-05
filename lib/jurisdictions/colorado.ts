@@ -33,8 +33,8 @@ export const ColoradoJurisdictionPack: JurisdictionPack = {
       citation_url: 'https://leg.colorado.gov/statutes/crs38-41-201',
       effective_date: '2026-01-01',
       version: '2026.1',
-      last_verified_date: '2026-08-01',
-      verified_by: 'Christopher Attorney, Esq. (CO Bar #54321)'
+      last_verified_date: 'UNVERIFIED',
+      verified_by: 'ATTORNEY VALIDATION REQUIRED BEFORE RELEASE'
     },
     VEHICLE: {
       statute_citation: 'C.R.S. § 13-54-102(1)(j)(I)',
@@ -49,8 +49,8 @@ export const ColoradoJurisdictionPack: JurisdictionPack = {
       citation_url: 'https://leg.colorado.gov/statutes/crs13-54-102',
       effective_date: '2026-01-01',
       version: '2026.1',
-      last_verified_date: '2026-08-01',
-      verified_by: 'Christopher Attorney, Esq. (CO Bar #54321)'
+      last_verified_date: 'UNVERIFIED',
+      verified_by: 'ATTORNEY VALIDATION REQUIRED BEFORE RELEASE'
     },
     HOUSEHOLD_GOODS: {
       statute_citation: 'C.R.S. § 13-54-102(1)(e)',
@@ -62,8 +62,8 @@ export const ColoradoJurisdictionPack: JurisdictionPack = {
       citation_url: 'https://leg.colorado.gov/statutes/crs13-54-102',
       effective_date: '2026-01-01',
       version: '2026.1',
-      last_verified_date: '2026-08-01',
-      verified_by: 'Christopher Attorney, Esq. (CO Bar #54321)'
+      last_verified_date: 'UNVERIFIED',
+      verified_by: 'ATTORNEY VALIDATION REQUIRED BEFORE RELEASE'
     },
     TOOLS_OF_TRADE: {
       statute_citation: 'C.R.S. § 13-54-102(1)(i)',
@@ -75,8 +75,8 @@ export const ColoradoJurisdictionPack: JurisdictionPack = {
       citation_url: 'https://leg.colorado.gov/statutes/crs13-54-102',
       effective_date: '2026-01-01',
       version: '2026.1',
-      last_verified_date: '2026-08-01',
-      verified_by: 'Christopher Attorney, Esq. (CO Bar #54321)'
+      last_verified_date: 'UNVERIFIED',
+      verified_by: 'ATTORNEY VALIDATION REQUIRED BEFORE RELEASE'
     },
     RETIREMENT: {
       statute_citation: 'C.R.S. § 13-54-102(1)(s) & 11 U.S.C. § 522(n)',
@@ -88,8 +88,8 @@ export const ColoradoJurisdictionPack: JurisdictionPack = {
       citation_url: 'https://leg.colorado.gov/statutes/crs13-54-102',
       effective_date: '2026-01-01',
       version: '2026.1',
-      last_verified_date: '2026-08-01',
-      verified_by: 'Christopher Attorney, Esq. (CO Bar #54321)'
+      last_verified_date: 'UNVERIFIED',
+      verified_by: 'ATTORNEY VALIDATION REQUIRED BEFORE RELEASE'
     }
   }
 };
