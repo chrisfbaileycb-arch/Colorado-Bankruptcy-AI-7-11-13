@@ -1,6 +1,5 @@
-import type { DocumentType as MasterDocumentType, FieldWrapper } from '../../types/master-case';
+import type { DocumentType, FieldWrapper } from '../../types/master-case';
 
-export type DocumentType = MasterDocumentType;
 export type VerificationStatus = FieldWrapper<unknown>['status'];
 
 export interface ExtractedFact {
