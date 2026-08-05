@@ -67,7 +67,7 @@ const state = {
   realProperty: [
     {
       id: 're_1',
-      address: '100 17th St, Apt 4B, Denver, CO 80202',
+      address: '100 Example Street, Denver, CO 80202',
       legalDescription: 'Lot 4, Block 12, Highlands Addition',
       nature: 'SINGLE_FAMILY',
       ownership: 'FEE_SIMPLE',
@@ -81,21 +81,21 @@ const state = {
       id: 'pp_1',
       category: 'VEHICLE',
       lineNumber: '3',
-      description: '2022 Toyota RAV4 (45k miles, VIN: 4T1B11HK8JU123456)',
+      description: '2022 Toyota RAV4 (45k miles, VIN: EXAMPLE-VIN-NOT-VALID)',
       currentValue: 22000
     },
     {
       id: 'pp_2',
       category: 'FINANCIAL_ACCOUNT',
       lineNumber: '17',
-      description: 'FirstBank Checking Account (*1234)',
+      description: 'Example Checking Account (*1234)',
       currentValue: 1250
     },
     {
       id: 'pp_3',
       category: 'RETIREMENT_ACCOUNT',
       lineNumber: '21',
-      description: 'Vanguard 401(k) Plan',
+      description: 'Example Retirement Account',
       currentValue: 45000
     }
   ],
@@ -125,11 +125,11 @@ const state = {
   securedClaims: [
     {
       id: 'sec_1',
-      creditorName: 'Mile High Mortgage Services',
+      creditorName: 'Example Mortgage Creditor',
       mailingAddress: 'PO Box 9900, Denver, CO 80201',
       accountNumber: '*8891',
       collateralPropertyRefId: 're_1',
-      collateralDescription: '100 17th St, Apt 4B, Denver, CO 80202',
+      collateralDescription: '100 Example Street, Denver, CO 80202',
       collateralValue: 450000,
       totalClaimAmount: 280000,
       securedAmount: 280000,
@@ -137,11 +137,11 @@ const state = {
     },
     {
       id: 'sec_2',
-      creditorName: 'Colorado Auto Finance',
+      creditorName: 'Example Vehicle Creditor',
       mailingAddress: '1200 Broadway, Denver, CO 80203',
       accountNumber: '*4419',
       collateralPropertyRefId: 'pp_1',
-      collateralDescription: '2022 Toyota RAV4 (45k miles, VIN: 4T1B11HK8JU123456)',
+      collateralDescription: '2022 Toyota RAV4 (45k miles, VIN: EXAMPLE-VIN-NOT-VALID)',
       collateralValue: 22000,
       totalClaimAmount: 14200,
       securedAmount: 14200,
@@ -152,7 +152,7 @@ const state = {
     {
       id: 'unsec_1',
       claimType: 'NON_PRIORITY' as const,
-      creditorName: 'Chase Card Services',
+      creditorName: 'Example Unsecured Creditor',
       mailingAddress: 'PO Box 15298, Wilmington, DE 19850',
       accountNumber: '*9012',
       dateIncurred: '2023-05-15',
@@ -168,7 +168,7 @@ const state = {
   contracts: [
     {
       id: 'g_1',
-      counterpartyName: 'Denver Heights Apartments',
+      counterpartyName: 'Example Residential Lessor',
       counterpartyAddress: '500 16th St, Denver, CO 80202',
       description: 'Residential Apartment Lease - Apt 4B',
       expirationDate: '2027-04-30',
@@ -179,7 +179,7 @@ const state = {
     {
       id: 'h_1',
       codebtorName: 'John Robert Doe',
-      codebtorAddress: '100 17th St, Apt 4B, Denver, CO 80202',
+      codebtorAddress: '100 Example Street, Denver, CO 80202',
       associatedClaimIds: ['sec_1']
     }
   ]
@@ -202,9 +202,9 @@ function buildMasterCaseDataFromUI(): MasterCaseData {
   const fn1 = (document.getElementById('first-name') as HTMLInputElement)?.value || 'Jane';
   const mn1 = (document.getElementById('middle-name') as HTMLInputElement)?.value || 'Marie';
   const ln1 = (document.getElementById('last-name') as HTMLInputElement)?.value || 'Doe';
-  const ssn1 = (document.getElementById('ssn-full') as HTMLInputElement)?.value || '999-88-1234';
-  const phone1 = (document.getElementById('phone') as HTMLInputElement)?.value || '(303) 555-0199';
-  const st1 = (document.getElementById('street') as HTMLInputElement)?.value || '100 17th St, Apt 4B';
+  const ssn1 = (document.getElementById('ssn-full') as HTMLInputElement)?.value || '000-00-0000';
+  const phone1 = (document.getElementById('phone') as HTMLInputElement)?.value || '';
+  const st1 = (document.getElementById('street') as HTMLInputElement)?.value || '100 Example Street';
   const city1 = (document.getElementById('city') as HTMLInputElement)?.value || 'Denver';
   const state1 = (document.getElementById('state') as HTMLInputElement)?.value || 'CO';
   const zip1 = (document.getElementById('zip') as HTMLInputElement)?.value || '80202';
@@ -226,9 +226,9 @@ function buildMasterCaseDataFromUI(): MasterCaseData {
     const fn2 = (document.getElementById('d2-first-name') as HTMLInputElement)?.value || 'John';
     const mn2 = (document.getElementById('d2-middle-name') as HTMLInputElement)?.value || 'Robert';
     const ln2 = (document.getElementById('d2-last-name') as HTMLInputElement)?.value || 'Doe';
-    const ssn2 = (document.getElementById('d2-ssn-full') as HTMLInputElement)?.value || '999-88-5678';
-    const phone2 = (document.getElementById('d2-phone') as HTMLInputElement)?.value || '(303) 555-0198';
-    const st2 = (document.getElementById('d2-street') as HTMLInputElement)?.value || '100 17th St, Apt 4B';
+    const ssn2 = (document.getElementById('d2-ssn-full') as HTMLInputElement)?.value || '000-00-0000';
+    const phone2 = (document.getElementById('d2-phone') as HTMLInputElement)?.value || '';
+    const st2 = (document.getElementById('d2-street') as HTMLInputElement)?.value || '100 Example Street';
     const city2 = (document.getElementById('d2-city') as HTMLInputElement)?.value || 'Denver';
     const zip2 = (document.getElementById('d2-zip') as HTMLInputElement)?.value || '80202';
 
@@ -322,26 +322,23 @@ document.addEventListener('DOMContentLoaded', () => {
   // Auth Gate
   const authForm = document.getElementById('auth-form');
   const overlay = document.getElementById('landing-overlay');
-  const authPass = document.getElementById('auth-password') as HTMLInputElement;
+  const demoAcknowledgment = document.getElementById('demo-acknowledgment') as HTMLInputElement;
   const authErr = document.getElementById('auth-error');
 
   if (sessionStorage.getItem('lexpetition_authenticated') === 'true') {
     if (overlay) overlay.style.display = 'none';
   }
 
-  const validAdminPasskeys = new Set(['lex2026', 'LexPetition2026!', 'Admin2026!', 'admin', 'lexpetition']);
-
-  authForm?.addEventListener('submit', (e) => {
+    authForm?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const entered = (authPass?.value || '').trim();
-    if (validAdminPasskeys.has(entered) || entered.length >= 4) {
+    if (demoAcknowledgment?.checked) {
       sessionStorage.setItem('lexpetition_authenticated', 'true');
       if (overlay) overlay.style.display = 'none';
       if (authErr) authErr.style.display = 'none';
     } else {
       if (authErr) {
         authErr.style.display = 'block';
-        authErr.innerText = 'Invalid access password. Use passkey "lex2026" or "LexPetition2026!".';
+        authErr.innerText = 'Please confirm that you will use synthetic data only.';
       }
     }
   });
