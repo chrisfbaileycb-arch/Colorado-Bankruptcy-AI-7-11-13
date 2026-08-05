@@ -41,7 +41,7 @@ describe('Phase 8: Attorney Review Console Test Suite', () => {
     const res = applyFieldOverride(data, override);
     expect(res.success).toBe(true);
 
-    const firstWrapper = res.updated_data.debtor_1.pii.first_name;
+    const firstWrapper = res.updated_data.debtor_1.first_name;
     expect(firstWrapper?.value).toBe('Janet');
     expect(firstWrapper?.status).toBe('attorney_approved');
     expect(firstWrapper?.attorney_notes).toBe('Corrected legal first name per passport');
