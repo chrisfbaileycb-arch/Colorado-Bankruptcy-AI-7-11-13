@@ -1,6 +1,6 @@
 import type { DocumentType, ExtractionResult } from './types';
 
-export function parseTaxReturn(rawObj: any, filename: string = 'tax_return.json'): ExtractionResult {
+export function parseTaxReturn(rawObj: any, filename: string = 'tax_return.json'): ExtractionResult<import('./types').ExtractedTaxReturn> {
   const w2Wages = Number(rawObj.w2_gross_wages_debtor_1 || rawObj.w2_wages || 58200);
   const name = String(rawObj.primary_taxpayer_name || 'Jane M Doe');
   const emp = String(rawObj.employer_name_debtor_1 || 'TechCorp Inc');
