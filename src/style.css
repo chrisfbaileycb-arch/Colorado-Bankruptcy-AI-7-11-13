@@ -616,3 +616,78 @@ iframe {
   border-color: var(--primary);
   outline: none;
 }
+
+/* Audit hardening: keyboard focus, overflow containment, and small-screen reflow */
+:where(button, input, select, textarea, a):focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+.card,
+.intake-card,
+.preview-card,
+.main-layout > * {
+  min-width: 0;
+}
+
+.pdf-viewer-container {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 0.75rem;
+  }
+
+  .landing-overlay {
+    padding: 0.75rem;
+  }
+
+  .landing-card {
+    padding: 1.25rem;
+  }
+
+  .hero-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .app-header,
+  .brand {
+    align-items: flex-start;
+  }
+
+  .app-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .header-badges,
+  .form-actions {
+    flex-wrap: wrap;
+  }
+
+  .form-actions {
+    gap: 0.75rem;
+  }
+
+  .form-actions .btn {
+    flex: 1 1 9rem;
+  }
+
+  .step-select {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

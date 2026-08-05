@@ -7,6 +7,7 @@ import {
   executeAttorneySignoff
 } from '../lib/engine/review';
 import type { FieldOverride, AttorneySignoff } from '../lib/engine/review/types';
+import { executeSelfReviewCompletion } from '../lib/engine/review';
 
 describe('Phase 8: Attorney Review Console Test Suite', () => {
   it('1. extractAllFieldWrappers traverses MasterCaseData SSOT and extracts field wrappers', () => {
@@ -23,7 +24,7 @@ describe('Phase 8: Attorney Review Console Test Suite', () => {
 
     expect(summary.total_fields).toBeGreaterThan(0);
     expect(summary.readiness_percentage).toBeGreaterThanOrEqual(0);
-    expect(summary.can_execute_signoff).toBe(true);
+    expect(summary.can_execute_signoff).toBe(false);
   });
 
   it('3. applyFieldOverride modifies field value, updates status to attorney_approved, and logs rationale note', () => {
@@ -52,7 +53,7 @@ describe('Phase 8: Attorney Review Console Test Suite', () => {
     const signoff: AttorneySignoff = {
       attorney_name: 'Example Supervising Attorney',
       bar_number: 'TEST-BAR-54321',
-      firm_name: 'Mile High BK Law',
+      firm_name: 'Example Law Firm',
       ecf_login_id: 'TEST_ECF_NOT_REAL',
       signed_at: new Date().toISOString(),
       declaration_accepted: false
@@ -60,7 +61,7 @@ describe('Phase 8: Attorney Review Console Test Suite', () => {
 
     const res = executeAttorneySignoff(data, signoff);
     expect(res.success).toBe(false);
-    expect(res.errors.some(e => e.includes('declaration under penalty of perjury'))).toBe(true);
+    expect(res.errors.some(e => e.includes('review confirmation'))).toBe(true);
   });
 
   it('5. executeAttorneySignoff rejects signoff if bar number is invalid', () => {
@@ -68,7 +69,7 @@ describe('Phase 8: Attorney Review Console Test Suite', () => {
     const signoff: AttorneySignoff = {
       attorney_name: 'Example Supervising Attorney',
       bar_number: '12',
-      firm_name: 'Mile High BK Law',
+      firm_name: 'Example Law Firm',
       ecf_login_id: 'TEST_ECF_NOT_REAL',
       signed_at: new Date().toISOString(),
       declaration_accepted: true
@@ -79,12 +80,67 @@ describe('Phase 8: Attorney Review Console Test Suite', () => {
     expect(res.errors.some(e => e.includes('valid Attorney Bar Number'))).toBe(true);
   });
 
-  it('6. executeAttorneySignoff completes successfully when all prerequisites pass', () => {
+  it('6. partitioned review can replace repetitive field-by-field approval when the signing attorney covers every intake step', () => {
     const data = createSampleMasterCaseData();
     const signoff: AttorneySignoff = {
       attorney_name: 'Example Supervising Attorney',
       bar_number: 'TEST-BAR-54321',
-      firm_name: 'Mile High Bankruptcy Law Group',
+      firm_name: 'Example Law Firm',
+      ecf_login_id: 'TEST_ECF_NOT_REAL',
+      signed_at: new Date().toISOString(),
+      declaration_accepted: true,
+      review_mode: 'PARTITIONED',
+      partition_approvals: [
+        { step_start: 1, step_end: 10, attorney_name: 'Example Supervising Attorney', bar_number: 'TEST-BAR-54321', approved_at: new Date().toISOString(), note: 'Delegated intake partition reviewed under firm policy.' },
+        { step_start: 11, step_end: 16, attorney_name: 'Example Supervising Attorney', bar_number: 'TEST-BAR-54321', approved_at: new Date().toISOString(), note: 'Remaining intake partition reviewed before final signoff.' }
+      ]
+    };
+
+    const res = executeAttorneySignoff(data, signoff);
+    expect(res.success).toBe(true);
+  });
+
+  it('7. partitioned attorney review rejects gaps in step coverage', () => {
+    const data = createSampleMasterCaseData();
+    const signoff: AttorneySignoff = {
+      attorney_name: 'Example Supervising Attorney',
+      bar_number: 'TEST-BAR-54321',
+      firm_name: 'Example Law Firm',
+      ecf_login_id: 'TEST_ECF_NOT_REAL',
+      signed_at: new Date().toISOString(),
+      declaration_accepted: true,
+      review_mode: 'PARTITIONED',
+      partition_approvals: [
+        { step_start: 1, step_end: 10, attorney_name: 'Example Supervising Attorney', bar_number: 'TEST-BAR-54321', approved_at: new Date().toISOString(), note: 'Approved first partition.' }
+      ]
+    };
+
+    const res = executeAttorneySignoff(data, signoff);
+    expect(res.success).toBe(false);
+    expect(res.errors.some(error => error.includes('does not cover intake step'))).toBe(true);
+  });
+
+  it('8. self-represented review never creates an attorney signoff', () => {
+    const data = createSampleMasterCaseData();
+    const res = executeSelfReviewCompletion(data, {
+      reviewer_name: 'Example Debtor',
+      completed_at: new Date().toISOString(),
+      declaration_accepted: true,
+      step_start: 1,
+      step_end: 16
+    });
+    expect(res.success).toBe(true);
+    expect(res.review_label).toBe('SELF_REPRESENTED_REVIEW');
+    expect(res.summary.signoff_details).toBeUndefined();
+  });
+
+  it('9. executeAttorneySignoff completes successfully when field-by-field prerequisites pass', () => {
+    const data = createSampleMasterCaseData();
+    for (const field of extractAllFieldWrappers(data)) field.status = 'attorney_approved';
+    const signoff: AttorneySignoff = {
+      attorney_name: 'Example Supervising Attorney',
+      bar_number: 'TEST-BAR-54321',
+      firm_name: 'Example Law Firm',
       ecf_login_id: 'TEST_ECF_NOT_REAL',
       signed_at: new Date().toISOString(),
       declaration_accepted: true
