@@ -23,7 +23,7 @@ The public deployment is for synthetic demonstration data only. Its acknowledgme
 - Net-cash-flow calculation
 - Structured tax-return, paystub, bank-statement, and credit-report extraction adapters
 - Hard-audit flags for unresolved discrepancies
-- Attorney override and declaration-gated signoff workflow
+- Attorney review supports field-by-field approval or auditable step-range partitions; self-represented review is kept separate from attorney attribution
 - Draft-PDF mapping and generation interfaces; filing-grade PDF fidelity remains a pre-production gate
 - Synthetic fixtures and automated verification
 
@@ -140,9 +140,11 @@ Fixtures must use unmistakable placeholders such as `000-00-0000`, `EXAMPLE-VIN-
 
 Read [SECURITY.md](SECURITY.md) and [the data-handling policy](docs/data-handling.md) before contributing.
 
-## Attorney-review gate
+## Review modes
 
-A production implementation must enforce attorney approval on the server, not merely in browser code. At minimum:
+For represented matters, an attorney may use field-by-field review or a partitioned policy that records approval over complete intake step ranges. Partition coverage must have no gaps, blocking flags still stop the gate, and the signing attorney must match the recorded partition reviewer. For self-represented users, the engine records a separate self-review completion and must never label it as attorney approval.
+
+A production attorney-review implementation must enforce approval on the server, not merely in browser code. At minimum:
 
 1. Hard audit flags must be resolved.
 2. Material fields must be reviewed or approved.
