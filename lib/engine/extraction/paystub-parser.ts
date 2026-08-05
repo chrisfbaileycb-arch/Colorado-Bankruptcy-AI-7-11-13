@@ -1,4 +1,4 @@
-import type { DocumentType, ExtractionResult } from './types';
+import type { ExtractionResult } from './types';
 
 export function parsePaystub(rawObj: any, filename: string = 'paystub.json'): ExtractionResult<import('./types').ExtractedPaystub> {
   const gross = Number(rawObj.gross_pay_current || rawObj.gross || 2425);
