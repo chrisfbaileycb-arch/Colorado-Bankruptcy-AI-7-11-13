@@ -24,7 +24,7 @@ The public deployment is for synthetic demonstration data only. Its acknowledgme
 - Structured tax-return, paystub, bank-statement, and credit-report extraction adapters
 - Hard-audit flags for unresolved discrepancies
 - Attorney override and declaration-gated signoff workflow
-- Browser-based draft PDF preview and generation
+- Draft-PDF mapping and generation interfaces; filing-grade PDF fidelity remains a pre-production gate
 - Synthetic fixtures and automated verification
 
 These capabilities describe implemented software paths, not independent confirmation that every form, statute, threshold, rule, or generated packet is legally current or filing-ready.
@@ -112,18 +112,13 @@ bun run build
 
 The CI workflow runs the same test, typecheck, and build gates for pull requests and pushes to `main`.
 
-Current verified repository baseline:
-
-- 8 tests passing
-- 28 assertions passing
-- TypeScript typecheck passing
-- production build passing
+Current verified repository baseline is established by the latest passing CI run on the current pull request. Test counts are intentionally not hard-coded here because regression coverage grows with each safety change.
 
 Historical files may mention larger test totals from earlier development environments. Treat the current CI run as the authoritative repository baseline.
 
 ## Run the browser demonstration locally
 
-The repository uses TypeScript browser modules. Serve it through a development server rather than opening `index.html` directly:
+The repository uses TypeScript browser modules. The checked-in `build` script is currently a TypeScript compilation gate, not a production web-bundle pipeline. For local UI inspection, serve the browser modules through a development server rather than opening `index.html` directly:
 
 ```bash
 bunx vite --host 0.0.0.0
@@ -201,13 +196,13 @@ Deployment verification currently covers:
 - rejection of attorney signoff without the required declaration;
 - absence of frontend, backend, and network errors during final QA.
 
-Deployment passing does not authorize real-data use.
+Deployment passing does not authorize real-data use. The AppDeploy snapshot currently contains a richer UI build than the source on `main`; exact repository-to-deployment parity and a recorded deployed commit SHA are required release gates before production.
 
 ## Roadmap
 
 ### Near term
 
-- Add and enforce a dependency lockfile
+- Add and enforce a committed dependency lockfile and frozen-install CI
 - Record machine-readable form versions and effective dates
 - Add PDF golden-file regression tests
 - Expand synthetic edge-case fixtures
