@@ -67,7 +67,7 @@ export function runHardAuditFlags(inputData?: MasterCaseData | AuditInputData | 
     }
 
     if (master.schedule_d?.secured_claims) {
-      const form108IntentionIds = new Set(master.form_108?.secured_asset_intentions?.map(i => i.claim_id) || []);
+      const form108IntentionIds = new Set(master.form_108?.secured_asset_intentions?.map((i: any) => i.claim_id) || []);
       securedDebts = master.schedule_d.secured_claims.map(s => ({
         claim_id: s.id,
         creditor_name: s.creditor_name?.value || 'Secured Creditor',
@@ -78,7 +78,7 @@ export function runHardAuditFlags(inputData?: MasterCaseData | AuditInputData | 
     }
 
     if (master.sofa_form_107?.insider_payments_1_year?.value) {
-      insiderPayments = master.sofa_form_107.insider_payments_1_year.value.map((p, idx) => ({
+      insiderPayments = master.sofa_form_107.insider_payments_1_year.value.map((p: any, idx: number) => ({
         payment_id: `insider_${idx}`,
         payee_name: p.insider_name,
         relationship: p.relationship,
@@ -88,7 +88,7 @@ export function runHardAuditFlags(inputData?: MasterCaseData | AuditInputData | 
     }
 
     if (master.means_test_122a?.paystubs_6_months?.length) {
-      payStubs = master.means_test_122a.paystubs_6_months.map((p, idx) => ({
+      payStubs = master.means_test_122a.paystubs_6_months.map((p: any, idx: number) => ({
         stub_id: `stub_${idx}`,
         pay_date: petitionDate
       }));
