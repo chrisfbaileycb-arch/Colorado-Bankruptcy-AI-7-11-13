@@ -10,7 +10,7 @@ The prototype remains suitable only for synthetic demonstrations. This audit fix
 
 | Area | Status | Evidence / action |
 |---|---|---|
-| Product | Improved | Chapter 7 boundary is explicit; readiness language is now framed as prototype review coverage. |
+| Product | Improved | Chapter 7 boundary is explicit; review now supports attorney-configured step partitions and a separately labeled self-represented path. |
 | Design | Improved | Existing dark visual system retained; safety and review labels clarified. |
 | Mobile & Tablet | Improved / verify | Responsive containment and action wrapping hardened; fresh deployment QA required after release. |
 | Performance | Needs work | Client-side PDF generation is a structural hot path; add measured lab budgets and debounce/lazy generation. |
@@ -42,6 +42,10 @@ The prototype remains suitable only for synthetic demonstrations. This audit fix
 - District of Colorado Chapter 7 voluntary petition packet: https://www.cob.uscourts.gov/forms/chapter-7-voluntary-petition-packet
 - District of Colorado forms index: https://www.cob.uscourts.gov/forms
 - Colorado Attorney General Colorado Privacy Act resources: https://coag.gov/resources/colorado-privacy-act/
+
+## Review-policy note
+
+The audit branch implements partitioned attorney review as recorded step ranges (for example, Steps 1–10 and Steps 11–16) rather than forcing an attorney to click every field. A partitioned attorney signoff requires complete Steps 1–16 coverage by the same signing attorney and still blocks on critical or flagged items. A self-represented completion path is deliberately separate and never creates attorney attribution. The U.S. Courts and District of Colorado both recognize that individuals may file bankruptcy without an attorney (pro se), while strongly recommending qualified legal advice: https://www.uscourts.gov/court-programs/bankruptcy/filing-without-attorney and https://www.cob.uscourts.gov/filing-without-attorney
 
 ## Release blockers
 
