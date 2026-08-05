@@ -23,7 +23,7 @@ describe('Phase 8: Attorney Review Console Test Suite', () => {
 
     expect(summary.total_fields).toBeGreaterThan(0);
     expect(summary.readiness_percentage).toBeGreaterThanOrEqual(0);
-    expect(summary.can_execute_signoff).toBe(true);
+    expect(summary.can_execute_signoff).toBe(false);
   });
 
   it('3. applyFieldOverride modifies field value, updates status to attorney_approved, and logs rationale note', () => {
@@ -52,7 +52,7 @@ describe('Phase 8: Attorney Review Console Test Suite', () => {
     const signoff: AttorneySignoff = {
       attorney_name: 'Example Supervising Attorney',
       bar_number: 'TEST-BAR-54321',
-      firm_name: 'Mile High BK Law',
+      firm_name: 'Example Law Firm',
       ecf_login_id: 'TEST_ECF_NOT_REAL',
       signed_at: new Date().toISOString(),
       declaration_accepted: false
@@ -60,7 +60,7 @@ describe('Phase 8: Attorney Review Console Test Suite', () => {
 
     const res = executeAttorneySignoff(data, signoff);
     expect(res.success).toBe(false);
-    expect(res.errors.some(e => e.includes('declaration under penalty of perjury'))).toBe(true);
+    expect(res.errors.some(e => e.includes('review confirmation'))).toBe(true);
   });
 
   it('5. executeAttorneySignoff rejects signoff if bar number is invalid', () => {
@@ -68,7 +68,7 @@ describe('Phase 8: Attorney Review Console Test Suite', () => {
     const signoff: AttorneySignoff = {
       attorney_name: 'Example Supervising Attorney',
       bar_number: '12',
-      firm_name: 'Mile High BK Law',
+      firm_name: 'Example Law Firm',
       ecf_login_id: 'TEST_ECF_NOT_REAL',
       signed_at: new Date().toISOString(),
       declaration_accepted: true
@@ -81,10 +81,11 @@ describe('Phase 8: Attorney Review Console Test Suite', () => {
 
   it('6. executeAttorneySignoff completes successfully when all prerequisites pass', () => {
     const data = createSampleMasterCaseData();
+    for (const field of extractAllFieldWrappers(data)) field.status = 'attorney_approved';
     const signoff: AttorneySignoff = {
       attorney_name: 'Example Supervising Attorney',
       bar_number: 'TEST-BAR-54321',
-      firm_name: 'Mile High Bankruptcy Law Group',
+      firm_name: 'Example Law Firm',
       ecf_login_id: 'TEST_ECF_NOT_REAL',
       signed_at: new Date().toISOString(),
       declaration_accepted: true
