@@ -1,6 +1,6 @@
 import type { DocumentType, ExtractionResult } from './types';
 
-export function parseCreditReport(rawArray: any[], filename: string = 'credit_report.json'): ExtractionResult {
+export function parseCreditReport(rawArray: any[], filename: string = 'credit_report.json'): ExtractionResult<import('./types').ExtractedCreditReportItem[]> {
   const items = Array.isArray(rawArray) && rawArray.length > 0 ? rawArray : [
     { creditor_name: 'Example Unsecured Creditor', current_balance: 4500, is_secured: false },
     { creditor_name: 'Example Vehicle Creditor', current_balance: 14200, is_secured: true }
