@@ -33,13 +33,9 @@ import {
 } from '../lib/index';
 import {
   parseTaxReturn,
-  mergeTaxReturnIntoMasterCase,
   parsePaystub,
-  mergePaystubIntoMasterCase,
   parseBankStatement,
-  mergeBankStatementIntoMasterCase,
   parseCreditReport,
-  mergeCreditReportIntoMasterCase,
   calculateReviewSummary,
   executeAttorneySignoff,
   applyFieldOverride,
