@@ -2,7 +2,8 @@ import { expect, test, describe } from "bun:test";
 import { 
   calculate6MonthCMI, 
   getColoradoMedianIncome,
-  COLORADO_MEDIAN_INCOME_2026
+  COLORADO_MEDIAN_INCOME_2026,
+  COLORADO_MEDIAN_INCOME_EFFECTIVE_DATE
 } from "../lib/index";
 
 describe("6-Month Current Monthly Income (CMI) Engine", () => {
@@ -22,7 +23,17 @@ describe("6-Month Current Monthly Income (CMI) Engine", () => {
     expect(result.total_combined_cmi_monthly).toBe(4000);
     expect(result.total_combined_cmi_annualized).toBe(48000);
     expect(result.months_evaluated).toBe(6);
-    expect(result.colorado_median_threshold).toBe(72450);
+    expect(result.colorado_median_threshold).toBe(87940);
     expect(result.is_above_median).toBe(false);
+  });
+  test("uses the current July 15, 2026 Colorado median table and additional-member amount", () => {
+    expect(COLORADO_MEDIAN_INCOME_EFFECTIVE_DATE).toBe("2026-07-15");
+    expect(COLORADO_MEDIAN_INCOME_2026).toEqual({
+      1: 87940,
+      2: 109497,
+      3: 130850,
+      4: 153501
+    });
+    expect(getColoradoMedianIncome(5)).toBe(164601);
   });
 });

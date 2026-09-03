@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Synthetic-only demonstration of an attorney-supervised Colorado Chapter 7 petition-preparation prototype." />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="color-scheme" content="dark" />
   <title>LexPetition AI™ Engine — Attorney-Supervised Bankruptcy Petition Platform</title>
   <link rel="stylesheet" href="./src/style.css" />
 </head>
@@ -22,8 +26,8 @@
           <p>Field-level provenance tracking (`field_id`, `source`, `status`, `attorney_notes`, `mapped_destinations`).</p>
         </div>
         <div class="feature-box">
-          <h4>C.R.S. 2026 Exemption Auditor</h4>
-          <p>Automated statutory cap calculations for Homestead ($250k/$350k), Vehicles, Tools of Trade & 100% Retirement.</p>
+          <h4>Colorado Exemption Review</h4>
+          <p>Configured exemption-cap checks for demonstration. Current statutes and amounts require qualified-attorney verification before production use.</p>
         </div>
         <div class="feature-box">
           <h4>Means Test 122A Engine</h4>
@@ -44,7 +48,7 @@
             <label class="checkbox-label"><input type="checkbox" id="demo-acknowledgment" required /> I understand this is a demonstration and I will use synthetic data only.</label>
             <button type="submit" class="btn btn-primary" style="width:100%; padding:0.75rem; font-size:1rem;">Enter Demonstration</button>
           </div>
-          <div id="auth-error" class="auth-error">Please acknowledge the demonstration terms.</div>
+          <div id="auth-error" class="auth-error" role="alert" aria-live="polite">Please acknowledge the demonstration terms.</div>
         </form>
       </div>
     </div>
@@ -77,7 +81,7 @@
               <option value="2">Step 2: Joint Debtor 2 Identity (Form 101/121)</option>
               <option value="3">Step 3: Schedule A/B Real Estate Assets</option>
               <option value="4">Step 4: Schedule A/B Personal Property</option>
-              <option value="5">Step 5: Schedule C Exemptions (C.R.S. 2026)</option>
+              <option value="5">Step 5: Schedule C Exemptions (Attorney Verification Required)</option>
               <option value="6">Step 6: Schedule D Secured Claims</option>
               <option value="7">Step 7: Schedule E/F Unsecured Debts</option>
               <option value="8">Step 8: Schedule G Executory Contracts</option>
@@ -88,10 +92,10 @@
               <option value="13">Step 13: Statement of Financial Affairs (107)</option>
               <option value="14">Step 14: Statement of Intention (108)</option>
               <option value="15">Step 15: Means Testing Engine (122A-1/2)</option>
-              <option value="16">Step 16: AI Document Extraction & Vault</option>
-              <option value="17">Step 17: Attorney Review & Signoff Portal</option>
+              <option value="16">Step 16: Synthetic Document Extraction</option>
+              <option value="17">Step 17: Attorney Review Simulation</option>
             </select>
-            <span class="step-indicator" id="step-indicator" style="background: var(--primary); color: #fff; padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold; white-space: nowrap;">Step 1 of 17</span>
+            <span class="step-indicator" id="step-indicator" role="status" aria-live="polite" style="background: var(--primary); color: #fff; padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold; white-space: nowrap;">Step 1 of 17</span>
           </div>
         </div>
 
@@ -134,7 +138,7 @@
             <div class="grid-3">
               <div class="form-group">
                 <label for="city">City *</label>
-                <input type="text" id="city" value="Denver" required />
+                <input type="text" id="city" value="Example City" required />
               </div>
               <div class="form-group">
                 <label for="state">State</label>
@@ -142,7 +146,7 @@
               </div>
               <div class="form-group">
                 <label for="zip">ZIP Code *</label>
-                <input type="text" id="zip" value="80202" required />
+                <input type="text" id="zip" value="00000" required />
               </div>
             </div>
           </div>
@@ -193,7 +197,7 @@
             <div class="grid-3">
               <div class="form-group">
                 <label for="d2-city">City</label>
-                <input type="text" id="d2-city" value="Denver" />
+                <input type="text" id="d2-city" value="Example City" />
               </div>
               <div class="form-group">
                 <label for="d2-state">State</label>
@@ -201,7 +205,7 @@
               </div>
               <div class="form-group">
                 <label for="d2-zip">ZIP Code</label>
-                <input type="text" id="d2-zip" value="80202" />
+                <input type="text" id="d2-zip" value="00000" />
               </div>
             </div>
           </div>
@@ -243,7 +247,7 @@
 
           <!-- Step 5: Schedule C Exemptions -->
           <div class="form-step" id="step-5">
-            <h3>Step 5: Schedule C: Claimed Exemptions & C.R.S. Statutory Caps</h3>
+            <h3>Step 5: Schedule C: Claimed Exemptions & Configured Colorado Caps</h3>
             
             <div class="grid-2 toggle-row">
               <label class="checkbox-label">
@@ -264,7 +268,7 @@
             <div id="exemption-container" class="item-list-container"></div>
 
             <div id="exemption-validation-card" class="validation-summary-card">
-              <h5>Live Exemption Compliance Audit</h5>
+              <h5>Prototype Exemption Review (Attorney Verification Required)</h5>
               <div id="exemption-audit-details">Checking statutory caps...</div>
             </div>
           </div>
@@ -342,11 +346,11 @@
                 </div>
                 <div class="form-group">
                   <label for="d1-employer-name">Employer Name</label>
-                  <input type="text" id="d1-employer-name" value="TechCorp Inc" />
+                  <input type="text" id="d1-employer-name" value="Example Employer" />
                 </div>
                 <div class="form-group">
                   <label for="d1-employer-street">Employer Address</label>
-                  <input type="text" id="d1-employer-street" value="500 Tech Blvd" />
+                  <input type="text" id="d1-employer-street" value="400 Example Employment Road" />
                 </div>
               </div>
 
@@ -509,7 +513,7 @@
             <div class="grid-2">
               <div class="form-group">
                 <label for="sofa-noninsider-creditor">90-Day Creditor Payment Name</label>
-                <input type="text" id="sofa-noninsider-creditor" value="Chase Auto Loan" />
+                <input type="text" id="sofa-noninsider-creditor" value="Example Vehicle Creditor" />
               </div>
               <div class="form-group">
                 <label for="sofa-noninsider-paid">Total Amount Paid in 90 Days ($)</label>
@@ -641,8 +645,8 @@
 
           <!-- Step 16: AI Document Extraction Engine & Vault -->
           <div class="form-step" id="step-16">
-            <h3>Step 16: Pluggable AI Document Extraction Engine & Document Vault</h3>
-            <p class="section-desc">Upload real financial documents (PDF, JSON, CSV, TXT) to extract provenanced candidate facts with strict schema validation.</p>
+            <h3>Step 16: Synthetic Document Extraction Demonstration</h3>
+            <p class="section-desc">Use synthetic document files only (PDF, JSON, CSV, TXT). This browser demonstration is not approved for real client documents or personal data.</p>
 
             <div class="section-block" style="background: rgba(255,255,255,0.02); border: 1px dashed var(--primary); padding: 16px; border-radius: 8px;">
               <div class="grid-2">
@@ -702,13 +706,13 @@
           </div>
           <!-- Explicitly closing Step 16 -->
 
-          <!-- Step 17: Attorney Review Console & ECF Signoff Portal -->
+          <!-- Step 17: Attorney Review Simulation -->
           <div class="form-step" id="step-17">
-            <h3>Step 17: Attorney Review Console & ECF Signoff Portal</h3>
-            <p class="section-desc">Supervising attorney signoff, field provenance verification, and override audit trail.</p>
+            <h3>Step 17: Attorney Review Simulation</h3>
+            <p class="section-desc">Demonstration of review-gate logic. This does not authenticate an attorney, create a legal attestation, or file with CM/ECF.</p>
 
             <div class="totals-summary-box" style="margin-bottom:16px;">
-              <div>Petition Readiness: <strong id="attorney-readiness-val">100.0%</strong></div>
+              <div>Prototype Review Coverage: <strong id="attorney-readiness-val">100.0%</strong></div>
               <div>Critical Hard Audit Flags: <strong id="attorney-critical-flags-val" style="color:var(--accent);">0</strong></div>
             </div>
 
@@ -726,10 +730,10 @@
             <div class="grid-2" style="margin-top:12px;">
               <div class="form-group">
                 <label for="attorney-firm">Law Firm Name *</label>
-                <input type="text" id="attorney-firm" value="Mile High Bankruptcy Law Group" required />
+                <input type="text" id="attorney-firm" value="Example Law Firm" required />
               </div>
               <div class="form-group">
-                <label for="attorney-ecf">CM/ECF Login ID (Audit Reference Only)</label>
+                <label for="attorney-ecf">Synthetic CM/ECF Reference (never enter a real credential)</label>
                 <input type="text" id="attorney-ecf" value="TEST_ECF_NOT_REAL" />
               </div>
             </div>
@@ -743,19 +747,19 @@
 
             <div style="margin-top:16px; background: rgba(255,255,255,0.03); padding:12px; border-radius:6px; border: 1px solid var(--panel-border);">
               <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
-                <input type="checkbox" id="attorney-declaration-check" checked />
-                <span>I declare under penalty of perjury under 11 U.S.C. and ABA Model Rule 5.3 that I have reviewed all SSOT field provenance, extracted financial values, and court form schedules for accuracy prior to court filing.</span>
+                <input type="checkbox" id="attorney-declaration-check" />
+                <span>I confirm, for this synthetic demonstration only, that I reviewed the displayed data and audit flags. This is not a legal attestation or court filing.</span>
               </label>
             </div>
 
-            <button type="button" id="btn-attorney-signoff" class="btn btn-accent" style="margin-top:16px; width:100%; font-weight:bold; font-size:1.05rem;">Execute Supervising Attorney Signoff</button>
+            <button type="button" id="btn-attorney-signoff" class="btn btn-accent" style="margin-top:16px; width:100%; font-weight:bold; font-size:1.05rem;">Simulate Attorney Review Gate</button>
             <div id="signoff-status-box" style="margin-top:12px; color: var(--accent); font-weight:bold;"></div>
           </div>
 
           <div class="form-actions">
             <button type="button" id="prev-btn" class="btn btn-secondary" disabled>Previous</button>
             <button type="button" id="next-btn" class="btn btn-primary">Next Step</button>
-            <button type="submit" id="generate-btn" class="btn btn-accent" style="display: none;">Generate Full Vector PDF Packet</button>
+            <button type="submit" id="generate-btn" class="btn btn-accent" style="display: none;">Generate Synthetic Draft PDF Packet</button>
           </div>
         </form>
       </section>
@@ -787,7 +791,7 @@
         <div id="validation-box" class="validation-box">
           <div class="status-indicator success" id="val-status">
             <span class="dot"></span>
-            <span id="val-text">Deterministic Validation Engine: 0 Hard Audit Flags</span>
+            <span id="val-text" role="status" aria-live="polite">Deterministic Validation Engine: 0 Hard Audit Flags</span>
           </div>
         </div>
 

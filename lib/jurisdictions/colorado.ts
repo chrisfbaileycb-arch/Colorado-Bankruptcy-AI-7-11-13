@@ -4,8 +4,8 @@ export const ColoradoJurisdictionPack: JurisdictionPack = {
   jurisdiction_code: 'CO',
   state_name: 'Colorado',
   exemption_scheme: 'STATE_OPT_OUT',
-  effective_date: '2026-01-01',
-  version: '2026.1.0',
+  effective_date: 'UNVERIFIED',
+  version: 'UNVERIFIED',
   district_requirements: {
     district_name: 'United States Bankruptcy Court for the District of Colorado',
     local_rule_citation: 'L.B.F. 1007-6.1 / L.B.F. 3015-1.1',
@@ -29,10 +29,10 @@ export const ColoradoJurisdictionPack: JurisdictionPack = {
       special_caps: {
         elderly_or_disabled: 350000
       },
-      authoritative_source: 'Colorado Revised Statutes § 38-41-201 (2026 Legislative Inflation Adjustment)',
+      authoritative_source: 'Colorado Revised Statutes § 38-41-201',
       citation_url: 'https://leg.colorado.gov/statutes/crs38-41-201',
-      effective_date: '2026-01-01',
-      version: '2026.1',
+      effective_date: 'UNVERIFIED',
+      version: 'UNVERIFIED',
       last_verified_date: 'UNVERIFIED',
       verified_by: 'ATTORNEY VALIDATION REQUIRED BEFORE RELEASE'
     },
@@ -47,8 +47,8 @@ export const ColoradoJurisdictionPack: JurisdictionPack = {
       },
       authoritative_source: 'Colorado Revised Statutes § 13-54-102(1)(j)(I)',
       citation_url: 'https://leg.colorado.gov/statutes/crs13-54-102',
-      effective_date: '2026-01-01',
-      version: '2026.1',
+      effective_date: 'UNVERIFIED',
+      version: 'UNVERIFIED',
       last_verified_date: 'UNVERIFIED',
       verified_by: 'ATTORNEY VALIDATION REQUIRED BEFORE RELEASE'
     },
@@ -60,8 +60,8 @@ export const ColoradoJurisdictionPack: JurisdictionPack = {
       joint_cap_multiplier: 2,
       authoritative_source: 'Colorado Revised Statutes § 13-54-102(1)(e)',
       citation_url: 'https://leg.colorado.gov/statutes/crs13-54-102',
-      effective_date: '2026-01-01',
-      version: '2026.1',
+      effective_date: 'UNVERIFIED',
+      version: 'UNVERIFIED',
       last_verified_date: 'UNVERIFIED',
       verified_by: 'ATTORNEY VALIDATION REQUIRED BEFORE RELEASE'
     },
@@ -73,8 +73,8 @@ export const ColoradoJurisdictionPack: JurisdictionPack = {
       joint_cap_multiplier: 2,
       authoritative_source: 'Colorado Revised Statutes § 13-54-102(1)(i)',
       citation_url: 'https://leg.colorado.gov/statutes/crs13-54-102',
-      effective_date: '2026-01-01',
-      version: '2026.1',
+      effective_date: 'UNVERIFIED',
+      version: 'UNVERIFIED',
       last_verified_date: 'UNVERIFIED',
       verified_by: 'ATTORNEY VALIDATION REQUIRED BEFORE RELEASE'
     },
@@ -86,8 +86,8 @@ export const ColoradoJurisdictionPack: JurisdictionPack = {
       joint_cap_multiplier: 1,
       authoritative_source: 'C.R.S. § 13-54-102(1)(s)',
       citation_url: 'https://leg.colorado.gov/statutes/crs13-54-102',
-      effective_date: '2026-01-01',
-      version: '2026.1',
+      effective_date: 'UNVERIFIED',
+      version: 'UNVERIFIED',
       last_verified_date: 'UNVERIFIED',
       verified_by: 'ATTORNEY VALIDATION REQUIRED BEFORE RELEASE'
     }

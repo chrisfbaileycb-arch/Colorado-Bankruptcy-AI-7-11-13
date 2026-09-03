@@ -3,16 +3,23 @@ export * from './hard-audit';
 import type { MasterCaseData } from '../../types/master-case';
 import { ColoradoJurisdictionPack } from '../../jurisdictions/colorado';
 
+// U.S. Trustee Program means-test data for cases filed on or after July 15, 2026.
+// Source: https://www.justice.gov/ust/eo/bapcpa/20260715/bci_data/median_income_table.htm
+export const COLORADO_MEDIAN_INCOME_EFFECTIVE_DATE = '2026-07-15';
+export const COLORADO_MEDIAN_INCOME_SOURCE_URL =
+  'https://www.justice.gov/ust/eo/bapcpa/20260715/bci_data/median_income_table.htm';
 export const COLORADO_MEDIAN_INCOME_2026: Record<number, number> = {
-  1: 72450,
-  2: 91020,
-  3: 108402,
-  4: 126440
+  1: 87940,
+  2: 109497,
+  3: 130850,
+  4: 153501
 };
+export const MEDIAN_INCOME_ADDITIONAL_HOUSEHOLD_MEMBER_2026 = 11100;
 
 export function getColoradoMedianIncome(householdSize: number): number {
   const size = Math.max(1, Math.trunc(householdSize));
-  return COLORADO_MEDIAN_INCOME_2026[size] ?? COLORADO_MEDIAN_INCOME_2026[4] + (size - 4) * 11000;
+  return COLORADO_MEDIAN_INCOME_2026[size]
+    ?? COLORADO_MEDIAN_INCOME_2026[4] + (size - 4) * MEDIAN_INCOME_ADDITIONAL_HOUSEHOLD_MEMBER_2026;
 }
 
 export function calculate6MonthCMI(

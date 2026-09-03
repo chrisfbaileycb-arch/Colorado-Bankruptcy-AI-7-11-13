@@ -63,8 +63,8 @@ const state = {
   realProperty: [
     {
       id: 're_1',
-      address: '100 Example Street, Denver, CO 80202',
-      legalDescription: 'Lot 4, Block 12, Highlands Addition',
+      address: '100 Example Street, Example City, CO 00000',
+      legalDescription: 'EXAMPLE LEGAL DESCRIPTION - NOT REAL',
       nature: 'SINGLE_FAMILY',
       ownership: 'FEE_SIMPLE',
       currentValue: 450000,
@@ -84,7 +84,7 @@ const state = {
       id: 'pp_2',
       category: 'FINANCIAL_ACCOUNT',
       lineNumber: '17',
-      description: 'Example Checking Account (*1234)',
+      description: 'Example Checking Account (*0000)',
       currentValue: 1250
     },
     {
@@ -122,10 +122,10 @@ const state = {
     {
       id: 'sec_1',
       creditorName: 'Example Mortgage Creditor',
-      mailingAddress: 'PO Box 9900, Denver, CO 80201',
-      accountNumber: '*8891',
+      mailingAddress: 'PO Box 0000, Example City, CO 00000',
+      accountNumber: '*0000',
       collateralPropertyRefId: 're_1',
-      collateralDescription: '100 Example Street, Denver, CO 80202',
+      collateralDescription: '100 Example Street, Example City, CO 00000',
       collateralValue: 450000,
       totalClaimAmount: 280000,
       securedAmount: 280000,
@@ -134,8 +134,8 @@ const state = {
     {
       id: 'sec_2',
       creditorName: 'Example Vehicle Creditor',
-      mailingAddress: '1200 Broadway, Denver, CO 80203',
-      accountNumber: '*4419',
+      mailingAddress: '200 Example Avenue, Example City, CO 00000',
+      accountNumber: '*0000',
       collateralPropertyRefId: 'pp_1',
       collateralDescription: '2022 Toyota RAV4 (45k miles, VIN: EXAMPLE-VIN-NOT-VALID)',
       collateralValue: 22000,
@@ -149,8 +149,8 @@ const state = {
       id: 'unsec_1',
       claimType: 'NON_PRIORITY' as const,
       creditorName: 'Example Unsecured Creditor',
-      mailingAddress: 'PO Box 15298, Wilmington, DE 19850',
-      accountNumber: '*9012',
+      mailingAddress: 'PO Box 0001, Example City, CO 00000',
+      accountNumber: '*0000',
       dateIncurred: '2023-05-15',
       description: 'Credit Card Purchases',
       totalClaimAmount: 4500,
@@ -165,7 +165,7 @@ const state = {
     {
       id: 'g_1',
       counterpartyName: 'Example Residential Lessor',
-      counterpartyAddress: '500 16th St, Denver, CO 80202',
+      counterpartyAddress: '300 Example Boulevard, Example City, CO 00000',
       description: 'Residential Apartment Lease - Apt 4B',
       expirationDate: '2027-04-30',
       intention: 'ASSUME'
@@ -174,8 +174,8 @@ const state = {
   codebtors: [
     {
       id: 'h_1',
-      codebtorName: 'John Robert Doe',
-      codebtorAddress: '100 Example Street, Denver, CO 80202',
+      codebtorName: 'Example Joint Debtor',
+      codebtorAddress: '100 Example Street, Example City, CO 00000',
       associatedClaimIds: ['sec_1']
     }
   ]
@@ -201,9 +201,9 @@ function buildMasterCaseDataFromUI(): MasterCaseData {
   const ssn1 = (document.getElementById('ssn-full') as HTMLInputElement)?.value || '000-00-0000';
   const phone1 = (document.getElementById('phone') as HTMLInputElement)?.value || '';
   const st1 = (document.getElementById('street') as HTMLInputElement)?.value || '100 Example Street';
-  const city1 = (document.getElementById('city') as HTMLInputElement)?.value || 'Denver';
+  const city1 = (document.getElementById('city') as HTMLInputElement)?.value || 'Example City';
   const state1 = (document.getElementById('state') as HTMLInputElement)?.value || 'CO';
-  const zip1 = (document.getElementById('zip') as HTMLInputElement)?.value || '80202';
+  const zip1 = (document.getElementById('zip') as HTMLInputElement)?.value || '00000';
 
   data.debtor_1 = {
     first_name: createFieldWrapper(fn1, 'd1.first_name'),
@@ -225,8 +225,8 @@ function buildMasterCaseDataFromUI(): MasterCaseData {
     const ssn2 = (document.getElementById('d2-ssn-full') as HTMLInputElement)?.value || '000-00-0000';
     const phone2 = (document.getElementById('d2-phone') as HTMLInputElement)?.value || '';
     const st2 = (document.getElementById('d2-street') as HTMLInputElement)?.value || '100 Example Street';
-    const city2 = (document.getElementById('d2-city') as HTMLInputElement)?.value || 'Denver';
-    const zip2 = (document.getElementById('d2-zip') as HTMLInputElement)?.value || '80202';
+    const city2 = (document.getElementById('d2-city') as HTMLInputElement)?.value || 'Example City';
+    const zip2 = (document.getElementById('d2-zip') as HTMLInputElement)?.value || '00000';
 
     data.debtor_2 = {
       first_name: createFieldWrapper(fn2, 'd2.first_name'),
@@ -321,14 +321,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const demoAcknowledgment = document.getElementById('demo-acknowledgment') as HTMLInputElement;
   const authErr = document.getElementById('auth-error');
 
-  if (sessionStorage.getItem('lexpetition_authenticated') === 'true') {
+  if (sessionStorage.getItem('lexpetition_demo_acknowledged') === 'true') {
     if (overlay) overlay.style.display = 'none';
   }
 
     authForm?.addEventListener('submit', (e) => {
     e.preventDefault();
     if (demoAcknowledgment?.checked) {
-      sessionStorage.setItem('lexpetition_authenticated', 'true');
+      sessionStorage.setItem('lexpetition_demo_acknowledged', 'true');
       if (overlay) overlay.style.display = 'none';
       if (authErr) authErr.style.display = 'none';
     } else {
